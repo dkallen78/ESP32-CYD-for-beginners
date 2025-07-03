@@ -11,6 +11,10 @@ Besides incorporating a display directly with the microcontroller, the CYD also 
 
 ## What software do you need?
 
+### CH340 Driver
+
 First, you need to make sure you have a driver for the CH340 chip the CYD uses to allow communication between it and your computer via a USB connection. If you're using a Windows machine, an easy way to see if you have this driver is to plug in your CYD and see if it shows up in your Device Manager. If you have the driver installed it should appear under `Ports (COM & LPT)` as `USB-SERIAL CH340 (COM##)`. 
 
 <img src="device-manager-ch340.jpg" alt="Windows Device Manager showing the connected CYD">
+
+If you don't have the driver installed, you'll have to get it. The easiest way to grab it is from [SparkFun's website](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) which also has the drivers Mac and Linux.
