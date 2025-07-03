@@ -23,12 +23,24 @@ If you don't have the driver installed, you'll have to get it. The easiest way t
 
 To write programs for your CYD, you're going to need a special bit of software called an integrated development environment. There are lots of options out there to choose from, but the Arduino IDE is one of the easiest to use and is purpose built for working with hardware projects. Download the software [directly from Arduino](https://www.arduino.cc/en/software/) and install it on your computer.
 
-Once Arduino is installed and open on your computer, you need to install the necessary files to work with your CYD which can be done from the Boards Manager. To get there either click the icon at the left of the Arduino window, click on Tools > Board > Boards Manager in the menu, or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>. 
+#### Boards Manager
+
+Once Arduino is installed and open on your computer, you need to install the necessary files to work with your CYD which can be done from the Boards Manager. To get there either click the icon at the left of the Arduino window, click on Tools > Board > Boards Manager in the menu, or press <kbd><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd></kbd>. 
 
 <img src="assets/arduino-board-manager.jpg" alt="Arduino Boards Manager menu tree">
 
-Once the Boards Manager is open (it will be a column on the left side of the window) search for ESP32. A couple of options should show up, find the one called `esp32` and click `INSTALL`. This process can take a couple of minutes so be patient.
+Once the Boards Manager is open (it will be a column on the left side of the window) search for "esp32". A couple of options should show up, find the one called `esp32` and click `INSTALL`. This process can take a couple of minutes so be patient.
 
 <img src="assets/arduino-install-esp32.jpg" alt="Arduino Boards Manager showing the esp32 option">
 
-At this point you are just about ready to dive into the examples, but first you need learn how to install libraries. Libraries are packages of commands that give you extra functionality
+#### Library Manager
+
+At this point you are just about ready to dive into the examples, but first you need learn how to install libraries. Libraries are packages of commands that give you extra functionality. When you installed the ESP32 board just a minute ago, that had a number of so-called standard libraries that will let you do things like access Wi-Fi and Bluetooth which are common on ESP32 chips. But since our goal is to make use of the CYD display, we're going to need a library to make using the display easier. To access the Library Manager in Arduino either select the icon on the left of the window, click Tools > Manage Libraries in the menu or press <kbd><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd></kbd>.
+
+<img src="assets/arduino-library-manager.jpg" alt="Arduino Library Manager menu tree">
+
+The Library Manager will open on the left side of your window just like the Boards Manager did. There are lots of display libraries to choose from, but we're going to start with one that's a little bit simpler to set up. In the Library Manager search bar, search for "bb_spi_lcd". This should install much faster than the board you just installed.
+
+<img src="assets/arduino-install-bb_spi_lcd-library.jpg" alt="Arduino Library Manager showing the BB_SPI_LCD library">
+
+With all that taken care of, you're ready to start programming the CYD!
