@@ -23,7 +23,7 @@ If you don't have the driver installed, you'll have to get it. The easiest way t
 
 To write programs for your CYD, you're going to need a special bit of software called an integrated development environment. There are lots of options out there to choose from, but the Arduino IDE is one of the easiest to use and is purpose built for working with hardware projects. Download the software [directly from Arduino](https://www.arduino.cc/en/software/) and install it on your computer.
 
-Once Arduino is installed and open on your computer, you need to install the necessary files to work with your CYD which can be done from the Boards Manager. To get there either click the icon at the left of the Arduino window, click on Tools > Board > Boards Manager in the menu, or press Ctrl + Shift + B. 
+Once Arduino is installed and open on your computer, you need to install the necessary files to work with your CYD which can be done from the Boards Manager. To get there either click the icon at the left of the Arduino window, click on Tools > Board > Boards Manager in the menu, or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd>. 
 
 <img src="assets/arduino-board-manager.jpg" alt="Arduino Boards Manager menu tree">
 
