@@ -17,4 +17,12 @@ First, you need to make sure you have a driver for the CH340 chip the CYD uses t
 
 <img src="device-manager-ch340.jpg" alt="Windows Device Manager showing the connected CYD">
 
-If you don't have the driver installed, you'll have to get it. The easiest way to grab it is from [SparkFun's website](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) which also has the drivers Mac and Linux.
+If you don't have the driver installed, you'll have to get it. The easiest way to grab it is from [SparkFun's website](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) which also has the drivers Mac and Linux as well as some troubleshooting steps if you run into any issues.
+
+### IDE
+
+To write programs for your CYD, you're going to need a special bit of software called an integrated development environment. There are lots of options out there to choose from, but the Arduino IDE is one of the easiest to use and is purpose built for working with hardware projects. Download the software [directly from Arduino](https://www.arduino.cc/en/software/) and install it on your computer.
+
+Now that Arduino is installed and open on your computer, you need to install the necessary files to work with your CYD which can be done from the Boards Manager. To get there either click the icon at the left of the Arduino window or click on Tools > Board > Boards Manager in the menu. Once the Boards Manager is open (it will be a column on the left side of the window) search for ESP32. A couple of options should show up, find the one called `esp32` and click `INSTALL`. This process can take a couple of minutes so be patient.
+
+At this point you are just about ready to dive into the examples, but first you need learn how to install libraries. Libraries are packages of commands that give you extra functionality
