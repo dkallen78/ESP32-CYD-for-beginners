@@ -58,7 +58,26 @@ The purpose of this line should be fairly straightforward. The method `setTextCo
 lcd.println("Hello World");
 ```
 
-This line puts the text on the screen. Nothing fancy here. If you want to display text, it needs to be encapsulated in quotation marks (double quotes, single quotes will output a series of digits), but you can also pass a number or variable as an argument. If you do want to display a double number, keep in mind that `println()` can only display two decimal digits, anything more than that will be cut off. Also, although `println()` can *technically* accept a bool as an argument, it will only display a 1 or 0.
+This line puts the text on the screen. Nothing fancy here. If you want `println()` to display text, it needs to be encapsulated in double quotation marks. You can enclose a single character in single quotes and it will render fine, but any more than one character will output a big number.
+
+<details>
+  <summary>Why the big number for strings in single quotes?</summary>
+  In C++, single quotes are only for defining a single character, but if you put two or more characters into single quotes, they will be treated as digits of a base-256 number with all 256 ASCII symbols as possible glyphs. 
+
+  So, if your line looked like
+
+  ```c++
+  lcd.println('42');
+  ```
+
+  the compiler would take the ASCII value of the first digit (50) and add it to the ASCII value of the second digit (52) multiplied by 256.
+
+  ```
+  256<sup>1</sup> * 52 + 256<sup>0</sup> * 50 = 13,362
+  ```
+</details>
+
+ (double quotes, single quotes will output a series of digits), but you can also pass a number or variable as an argument. If you do want to display a double number, keep in mind that `println()` can only display two decimal digits, anything more than that will be cut off. Also, although `println()` can *technically* accept a bool as an argument, it will only display a 1 or 0.
 
 ```c++
 void loop() {
