@@ -21,3 +21,5 @@ Now you're all set to upload a program to your CYD. Once you have a program in t
 One last caveat: in order to upload a program to your CYD, it needs to be in DFU (device firmware upgrade) mode. To do that, while the CYD is plugged in, press and hold the BOOT button, press the RST button, then release the BOOT button. The CYD screen will go black and it will be ready to have a new program uploaded to it.
 
 <img src="assets/cyd-boot-sequence.gif" alt="button sequence to put CYD into DFU mode">
+
+[Let's go to the first example](01-hello-world/BB_SPI_LED/README.md)!
