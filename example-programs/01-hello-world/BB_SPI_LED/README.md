@@ -18,7 +18,7 @@ The first line of our code tells the compiler to "include" the bb_spi_lcd librar
 
 <details>
   <summary>Why is it called "bb_spi_lcd"?</summary>
-  
+
   "bb" is short for <a href="https://bitbanksoftware.blogspot.com/">BitBank Software</a>, run by Larry Bank and he's the guy that made the library which is <a href="https://github.com/bitbank2/bb_spi_lcd/tree/master">hosted here on GitHub</a>.<br>
 
   SPI is a hardware communication protocol that allows CPUs to communicate with peripheral devices. It stands for **s**erial **p**eripheral **i**interface.
@@ -67,3 +67,4 @@ void loop() {
 
 The `loop()` function is another one of those functions required by the Arduino IDE. Anything in the `loop()` function will run on reapeat as long as the CYD is powered.
 
+Now you have a working program, but it's kind of janky. Next up, we're going to dejank it.
