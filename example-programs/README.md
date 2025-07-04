@@ -22,4 +22,4 @@ One last caveat: in order to upload a program to your CYD, it needs to be in DFU
 
 <img src="assets/cyd-boot-sequence.gif" alt="button sequence to put CYD into DFU mode">
 
-[Let's go to the first example](01-hello-world/BB_SPI_LED/README.md)!
+[Let's go to the first example](01-hello-world/BB_SPI_LED/01/README.md)!
