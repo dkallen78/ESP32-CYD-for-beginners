@@ -44,7 +44,9 @@ Next up is the `setup()` function. This is one of two required functions when co
 lcd.begin(DISPLAY_CYD); 
 ```
 
-<var>lcd</var> is the name of the `BB_SPI_LCD` object type we created earier. `begin()` is a method that initializes the display and gets it ready to push some pixels. Your program will compile just fine without this line, but you won't be able to display anything on the screen without it. The bb_spi_lcd library works with a lot of devices. In order to work with the CYD it needs to know about the screen size and the internal pin layout and other sundry details. To make life easier for developers, BitBank has stored the display details for dozens of devices in the library, so the users can just pass a constant name (in this case `DISPLAY_CYD`) to the method instead of the 10 arguments you would otherwise need.
+<var>lcd</var> is the name of the `BB_SPI_LCD` object type we created earier. `begin()` is a method that initializes the display and gets it ready to push some pixels. Your program will compile just fine without this line, but you won't be able to display anything on the screen without it. 
+
+The bb_spi_lcd library works with a lot of devices. In order to work with the CYD it needs to know about the screen size and the internal pin layout and other sundry details. To make life easier for developers, BitBank has stored the display details for dozens of devices in the library, so the users can just pass a constant name (in this case `DISPLAY_CYD`) to the method instead of the 10 arguments you would otherwise need to get the display up and running.
 
 ```c++
 lcd.setTextColor(TFT_WHITE);
@@ -56,7 +58,7 @@ The purpose of this line should be fairly straightforward. The method `setTextCo
 lcd.println("Hello World");
 ```
 
-This line puts the text on the screen. Nothing fancy here.
+This line puts the text on the screen. Nothing fancy here. If you want to display text, it needs to be encapsulated in quotation marks (double quotes, single quotes will output a series of digits), but you can also pass a number or variable as an argument. If you do want to display a double number, keep in mind that `println()` can only display two decimal digits, anything more than that will be cut off. Also, although `println()` can *technically* accept a bool as an argument, it will only display a 1 or 0.
 
 ```c++
 void loop() {
