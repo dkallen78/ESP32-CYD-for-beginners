@@ -43,4 +43,4 @@ The Library Manager will open on the left side of your window just like the Boar
 
 <img src="assets/arduino-install-bb_spi_lcd-library.jpg" alt="Arduino Library Manager showing the BB_SPI_LCD library">
 
-With all that taken care of, you're ready to start programming the CYD!
+With all that taken care of, you're ready to [start programming](example-programs/README.md) the CYD!
