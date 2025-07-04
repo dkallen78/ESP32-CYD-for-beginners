@@ -18,9 +18,29 @@ The first line of our code tells the compiler to "include" the bb_spi_lcd librar
 
 <details>
   <summary>Why is it called "bb_spi_lcd"?</summary>
-  "bb" is short for <a href="https://bitbanksoftware.blogspot.com/">BitBank Software</a>, run by Larry Bank and he's the guy that made the library which is [hosted here on GitHub](https://github.com/bitbank2/bb_spi_lcd/tree/master).
+  "bb" is short for <a href="https://bitbanksoftware.blogspot.com/">BitBank Software</a>, run by Larry Bank and he's the guy that made the library which is <a href="https://github.com/bitbank2/bb_spi_lcd/tree/master">hosted here on GitHub</a>.
 
   SPI is a hardware communication protocol that allows CPUs to communicate with peripheral devices. It stands for **s**erial **p**eripheral **i**interface.
 
   LCD refers to the type of screen we're controlling with this library.
 </details>
+
+```c++
+BB_SPI_LCD lcd;
+```
+
+This line creates a new instance of the class `BB_SPI_LCD` and names it <var>lcd</var>. You have to use the exact name `BB_SPI_LCD` because it's defined in the `bb_spi_lcd.h` library, but you can name it whatever you want. If you do change the name, make sure you change it on lines 6, 7, and 8 as well.
+
+```c++
+void setup() {
+  ...
+}
+```
+
+Next up is the `setup()` function. This is one of two required functions when compiling your code with the Arduino IDE. The `setup()` function is run one time when your CYD starts up.
+
+```c++
+lcd.begin(DISPLAY_CYD); 
+```
+
+<var>lcd</var> is the name of the `BB_SPI_LCD` object type we created earier. `begin()` is a method that initializes the display and gets it ready to push some pixels. Your program will compile just fine without this line, but you won't be able to display anything on the screen without it. The bb_spi_lcd library works with a lot of devices. In order to work with the CYD it needs to know about the screen size and the internal pin layout and other sundry details. To make life easier for developers, BitBank has stored the display details for dozens of devices in the library, so the users can just pass a constant name (in this case `DISPLAY_CYD`) to the method instead of the 10 arguments you would otherwise need.
