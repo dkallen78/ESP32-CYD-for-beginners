@@ -19,6 +19,7 @@ The first line of our code tells the compiler to "include" the bb_spi_lcd librar
 <details>
   <summary>Why is it called "bb_spi_lcd"?</summary>
   "bb" is short for <a href="https://bitbanksoftware.blogspot.com/">BitBank Software</a>, run by Larry Bank and he's the guy that made the library which is <a href="https://github.com/bitbank2/bb_spi_lcd/tree/master">hosted here on GitHub</a>.
+  
 
   SPI is a hardware communication protocol that allows CPUs to communicate with peripheral devices. It stands for **s**erial **p**eripheral **i**interface.
 
