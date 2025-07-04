@@ -62,9 +62,9 @@ This line puts the text on the screen. Nothing fancy here. If you want `println(
 
 <details>
   <summary>Why the big number for strings in single quotes?</summary>
-  In C++, single quotes are only for defining a single character, but if you put two or more characters into single quotes, they will be treated as digits of a base-256 number with all 256 ASCII symbols as possible glyphs. 
+  In C++, single quotes are only for defining a single character, but if you put two or more characters into single quotes, they will be treated as digits of a base-256 number with all 256 ASCII symbols as possible glyphs.<br><br>
 
-  So, if your line looked like
+  So, if your line looked like this
 
   ```c++
   lcd.println('42');
@@ -77,7 +77,7 @@ This line puts the text on the screen. Nothing fancy here. If you want `println(
   ```
 </details>
 
- (double quotes, single quotes will output a series of digits), but you can also pass a number or variable as an argument. If you do want to display a double number, keep in mind that `println()` can only display two decimal digits, anything more than that will be cut off. Also, although `println()` can *technically* accept a bool as an argument, it will only display a 1 or 0.
+You can also pass a number or variable as an argument. If you do want to display a double number, keep in mind that `println()` can only display two decimal digits, anything more than that will be cut off. Also, although `println()` can *technically* accept a bool as an argument, it will only display a 1 or 0.
 
 ```c++
 void loop() {
