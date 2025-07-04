@@ -73,7 +73,7 @@ This line puts the text on the screen. Nothing fancy here. If you want `println(
   the compiler would take the ASCII value of the first digit (50) and add it to the ASCII value of the second digit (52) multiplied by 256.
 
   ```
-  256<sup>1</sup> * 52 + 256<sup>0</sup> * 50 = 13,362
+  256¹ * 52 + 256⁰ * 50 = 13,362
   ```
 </details>
 
