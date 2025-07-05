@@ -1,6 +1,6 @@
 # Loading a program on your CYD with Arduino IDE
 
-If you already know how to load a program to your microcontroller using the Arduino IDE, [jump ahead to the first example](01-hello-world/BB_SPI_LCD/01).
+If you already know how to load a program to your microcontroller using the Arduino IDE, [jump ahead to the first example](01-hello-world/BB_SPI_LCD/01/).
 
 The Arduino IDE is lots of things; one of those things is a text editor that lets you input your programs. It also serves as a bridge between your computer and your CYD, uploading your programs onto your CYD. The process to make it happen is pretty easy.
 
