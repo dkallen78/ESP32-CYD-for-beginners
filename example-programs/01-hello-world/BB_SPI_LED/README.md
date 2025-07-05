@@ -2,7 +2,7 @@
 
 BB_SPI_LCD is a library for manipulating LCD displays on various ESP32 and Arduino devices. 
 
-## BB_SPI_LCD Methods
+## Screen Stuff
 
 ### `begin(int iStandardType)`
 
@@ -37,6 +37,17 @@ Sets the orientation of the screen.
 Gets the current screen rotation in the form of an integer between 0 and 3.
 
 ---
+### `fillScreen(int iColor, int iFlags = DRAW_TO_LCD | DRAW_TO_RAM)`
+
+Fills the screen with a single 16-bit color.
+
+<var>`iColor`</var> an integer between 0 and 65,535 representing a color in the [RGB565 colorspace](https://rgbcolorpicker.com/565). Frequently given in the form of a four-digit hexadecimal number.
+
+<var>`iFlags`</var> I don't know the functional or useful difference between the two possible values for this argument ... yet.
+
+---
+## Word Stuff
+
 ### `setWordwrap(int bWrap)`
 
 Controls word wrapping behavior for text.
@@ -46,11 +57,3 @@ Controls word wrapping behavior for text.
 * <var>`0`</var> – no wrap
 * any other integer – wrap, cuts off words
 
----
-### `fillScreen(int iColor, int iFlags = DRAW_TO_LCD | DRAW_TO_RAM)`
-
-Fills the screen with a single 16-bit color.
-
-<var>`iColor`</var> an integer between 0 and 65,535 representing a color in the [RGB565 colorspace](https://rgbcolorpicker.com/565). Frequently given in the form of a four-digit hexadecimal number.
-
-<var>`iFlags`</var> I don't know the functional or useful difference between the two possible values for this argument ... yet.
