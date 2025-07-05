@@ -4,21 +4,21 @@ BB_SPI_LCD is a library for manipulating LCD displays on various ESP32 and Ardui
 
 ## BB_SPI_LCD Methods
 
-### `int begin(int iStandardType)`
+### `begin(int iStandardType)`
 
 This method sets up the display for use by the other methods in the library. 
 
-<var>iStandardType</var> is an integer that corresponds to one of dozens of predefined displays. The library has a number of [predefined constants](https://github.com/bitbank2/bb_spi_lcd/tree/master?tab=readme-ov-file#named-displays) you can use in place of these integers to make your code more legible.
+<var>`iStandardType`</var> is an integer that corresponds to one of dozens of predefined displays. The library has a number of [predefined constants](https://github.com/bitbank2/bb_spi_lcd/tree/master?tab=readme-ov-file#named-displays) you can use in place of these integers to make your code more legible.
 
 If your display isn't in this list, you can probably still use the library, but doing so takes more knowledge than I currently have.
 
-### `void setBrightness(uint8_t u8Brightness)`
+### `setBrightness(uint8_t u8Brightness)`
 
 Sets the brightness of the display.
 
 <var>u8Brightness</var> should be a non-negative integer value between 0 and 255.
 
-### `void setRotation(int iAngle)`
+### `setRotation(int iAngle)`
 
 Sets the orientation of the screen. 
 
@@ -29,11 +29,11 @@ Sets the orientation of the screen.
 * <var>LCD_ORIENTATION_180</var> or <var>2</var> – portrait with USB at the top
 * <var>LCD_ORIENTATION_270</var> or <var>3</var> – landscape with USB at the left (default for CYD)
 
-### `uint8_t getRotation()`
+### `getRotation()`
 
 Gets the current screen rotation in the form of an integer between 0 and 3.
 
-### `void setWordwrap(int bWrap)`
+### `setWordwrap(int bWrap)`
 
 Controls word wrapping behavior for text.
 
