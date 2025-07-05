@@ -88,4 +88,4 @@ void loop() {
 
 The `loop()` function is another one of those functions required by the Arduino IDE. Anything in the `loop()` function will run on reapeat as long as the CYD is powered.
 
-Now you have a working program, but it's kind of janky. Next up, we're going to dejank it.
+Now you have a working program, but it's kind of janky. [Next up](../02/), we're going to dejank it.

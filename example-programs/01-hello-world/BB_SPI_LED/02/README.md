@@ -44,7 +44,7 @@ lcd.setCursor(94, 0);
 
 <img src="../assets/img/cyd-hello-world-centered-bb.jpg" alt="CYD Hello World program with the text horizontally centered">
 
-If you're feeling adventurous you could set all of that up programatically so that the computer does the math for you.
+If you're feeling adventurous you could set all of that up programatically so that the computer does the math for you, but there are some parts of the code that would have to be restructured to pull it off.
 
 If we want to center the text vertically, we have to do similar math. Our font is 16 pixels high and only takes up one line. The middle of the y axis on the CYD is 120 pixels. Offset that position by half of our pixel height to get our vertical center point. 120 - 8 = 112
 
@@ -53,3 +53,17 @@ lcd.setCursor(94, 112);
 ```
 
 <img src="../assets/img/cyd-hello-world-hv-centered-bb.jpg" alt="CYD Hello World program with the text vertically and horizontally centered">
+
+This is starting to look good! Let's go one step further to make our "Hello World" pop!
+
+Let me introduce you to `fillRect()`. This method takes five arguments: the x and y position of the top-left corner, the pixel width and height of the rectangle, and its color. Let's make a box centered behind our text and give it a padding of 4 pixels. From the math we did earlier we know our text takes up a rectangle 132 pixels wide by 16 pixels high. If we want to add 4 pixels to each side, that would make our rectangle 8 pixels wider and taller or 140 by 24 pixels. We also have to offset the top-left corner of our rectangle by 4 pixels in each direction giving us initial x and y values of 90 and 108. If we make this box yellow, that will give us this command:
+
+```c++
+lcd.fillRect(90, 108, 140, 24, TFT_YELLOW);
+```
+
+Since that will be the same color as our text, we'll also have to swap out our foreground and background colors in the `setTextColor()` method if we want to see the text.
+
+<img src="../assets/img/cyd-hello-world-center-box-bb.jpg" alt="CYD Hello World program with centered text and box">
+
+Keep in mind that the order in which you do things matters. If you put the text on the screen first, there's a chance that any box you draw afterwards will cover your text.
