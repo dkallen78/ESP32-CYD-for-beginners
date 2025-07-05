@@ -52,8 +52,55 @@ Fills the screen with a single 16-bit color.
 
 Controls word wrapping behavior for text.
 
-<var>`bWrap`</var>
+<var>`bWrap`</var> is essentially a boolean integer.
 
 * <var>`0`</var> – no wrap
 * any other integer – wrap, cuts off words
 
+---
+### `setTextColor(int iFG, int iBG = -2)`
+
+Sets the foreground and background color of the displayed text.
+
+<var>`iFG`</var> an integer between 0 and 65,535 representing the 16-bit foreground color.
+
+<var>`iBG`</var> an integer between 0 and 65,535 representing the 16-bit background color. Defaults to black if omitted.
+
+---
+### `setCursor(int x, int y)`
+
+Sets where to place the cursor for displaying text.
+
+<var>`x`</var> the x position at which to place the cursor.
+<var>`y`</var> the y position at which to place the cursor.
+
+---
+### `setFont(int iFont)`
+
+Sets the font with which to display text output.
+
+<var>`iFont`</var> expected to be an integer between 0 and 4 or one of five enumerated constants.
+
+<details>
+<summary>Font contants</summary>
+* FONT_6x8
+* FONT_8x8
+* FONT_12x16
+* FONT_16x16
+* Font_16x32
+</details>
+
+---
+### `getCursorX()`
+
+Gets the current x position of the cursor in the form of an integer.
+
+---
+### `getCursorY()`
+
+Gets the current y position of the cursor in the form of an integer.
+
+---
+### `fontHeight()`
+
+Gets the height in pixels of the current font.
