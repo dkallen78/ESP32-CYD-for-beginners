@@ -62,7 +62,7 @@ Let me introduce you to `fillRect()`. This method takes five arguments: the x an
 lcd.fillRect(90, 108, 140, 24, TFT_YELLOW);
 ```
 
-Since that will be the same color as our text, we'll also have to swap out our foreground and background colors in the `setTextColor()` method if we want to see the text.
+Since that will be the same color as our text, we'll also have to swap out our foreground and background colors in the `setTextColor()` method if we want the text to look nice in its box.
 
 <img src="../assets/img/cyd-hello-world-center-box-bb.jpg" alt="CYD Hello World program with centered text and box">
 
