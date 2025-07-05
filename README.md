@@ -17,7 +17,7 @@ First, you need to make sure you have a driver for the CH340 chip the CYD uses t
 
 <img src="assets/device-manager-ch340.jpg" alt="Windows Device Manager showing the connected CYD">
 
-If you don't have the driver installed, you'll have to get it. The easiest way to grab it is from [SparkFun's website](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) which also has the drivers Mac and Linux as well as some troubleshooting steps if you run into any issues.
+If you don't have the driver installed, you'll have to get it. The easiest way to grab it is from [SparkFun's website](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all) which also has the drivers for Mac and Linux as well as some troubleshooting steps if you run into any issues.
 
 ### IDE
 
@@ -43,4 +43,4 @@ The Library Manager will open on the left side of your window just like the Boar
 
 <img src="assets/arduino-install-bb_spi_lcd-library.jpg" alt="Arduino Library Manager showing the BB_SPI_LCD library">
 
-With all that taken care of, you're ready to [start programming](example-programs/README.md) the CYD!
+With all that taken care of, you're ready to [start programming](example-programs/) the CYD!
