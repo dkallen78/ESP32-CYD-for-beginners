@@ -35,6 +35,7 @@ This is fine, but it would look better if the text were centered. The BB_SPI_LCD
 2. The width in pixels of your display. Since you're using a CYD you know that's either 320 or 240.
 3. The number of characters in your string. There are 11 characters in the string "Hello World".
 4. The width in pixels of your font. 
+
 We know our font is 12 pixels wide. The fonts included in this library are monospaced, meaning each glyph takes up an equal amount of screen real estate. Our string is 11 characters long, so that means our string takes up 132 pixels. If we moved our cursor to pixel 160 on the x axis in the middle of the screen our text would begin from there, so the trick is to offset the pixel to the left by half the length of our string, 66 pixels. That means we need to move our cursor to pixel 160 - 66, or 94.
 
 ```c++
