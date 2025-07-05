@@ -16,13 +16,13 @@ If your display isn't in this list, you can probably still use the library, but 
 
 Sets the brightness of the display.
 
-<var>u8Brightness</var> should be a non-negative integer value between 0 and 255.
+<var>`u8Brightness`</var> should be a non-negative integer value between 0 and 255.
 
 ### `setRotation(int iAngle)`
 
 Sets the orientation of the screen. 
 
-<var>iAngle</var> should be an integer between 0 and 3. You can also use one of four predefined constants for code readablity.
+<var>`iAngle`</var> should be an integer between 0 and 3. You can also use one of four predefined constants for code readablity.
 
 * <var>LCD_ORIENTATION_0</var> or <var>0</var> – portrait with USB at the bottom
 * <var>LCD_ORIENTATION_90</var> or <var>1</var> – landscape with USB at the right
@@ -37,13 +37,15 @@ Gets the current screen rotation in the form of an integer between 0 and 3.
 
 Controls word wrapping behavior for text.
 
-<var>bWrap</var>
+<var>`bWrap`</var>
 
-* <var>0</var> – no wrap
+* <var>`0`</var> – no wrap
 * any other integer – wrap, cuts off words
 
 ### `fillScreen(int iColor, int iFlags = DRAW_TO_LCD | DRAW_TO_RAM)`
 
 Fills the screen with a single 16-bit color.
 
-<var>iColor</var> 
+<var>`iColor`</var> an integer between 0 and 65,535 representing a color in the [RGB565 colorspace](https://rgbcolorpicker.com/565). Frequently given in the form of a four-digit hexadecimal number.
+
+<var>`iFlags`</var> I don't know the functional or useful difference between the two possible values for this argument ... yet.
