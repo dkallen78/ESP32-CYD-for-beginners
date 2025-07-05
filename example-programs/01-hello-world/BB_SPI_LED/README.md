@@ -83,11 +83,13 @@ Sets the font with which to display text output.
 
 <details>
 <summary>Font contants</summary>
-* FONT_6x8
-* FONT_8x8
-* FONT_12x16
-* FONT_16x16
-* Font_16x32
+  <ul>
+    <li>FONT_6x8</li>
+    <li>FONT_8x8</li>
+    <li>FONT_12x16</li>
+    <li>FONT_16x16</li>
+    <li>Font_16x32</li>
+  <ul>
 </details>
 
 ---
