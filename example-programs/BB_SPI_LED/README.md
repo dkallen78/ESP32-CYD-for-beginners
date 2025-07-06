@@ -20,6 +20,16 @@ Sets the brightness of the display.
 <var>`u8Brightness`</var> should be a non-negative integer value between 0 and 255.
 
 ---
+### `height()`
+
+Gets the height of the screen in pixels.
+
+---
+### `width()`
+
+Gets the width of the screen in pixels.
+
+---
 ### `setRotation(int iAngle)`
 
 Sets the orientation of the screen. 
@@ -88,7 +98,7 @@ Sets the font with which to display text output.
     <li>FONT_8x8</li>
     <li>FONT_12x16</li>
     <li>FONT_16x16</li>
-    <li>Font_16x32</li>
+    <li>FONT_16x32</li>
   <ul>
 </details>
 
@@ -106,3 +116,22 @@ Gets the current y position of the cursor in the form of an integer.
 ### `fontHeight()`
 
 Gets the height in pixels of the current font.
+
+---
+##
+Drawing stuff
+
+### `fillRect(int x, int y, int w, int h, int iColor, int iFlags = DRAW_TO_LCD | DRAW_TO_RAM);`
+
+Draws a rectangle on the screen.
+
+<var>`x`</var> and <var>`y`</var> are the coordinates of the top-left corner of the rectangle to be drawn.
+
+<var>`w`</var> and <var>`h`</var> are the width and height in pixels of the rectangle to be drawn.
+
+<var>`iColor`</var> is the color of the rectangle to be drawn.
+
+<var>`iFlags`</var> I don't know what DRAW_TO_RAM is used for.
+
+---
+###
