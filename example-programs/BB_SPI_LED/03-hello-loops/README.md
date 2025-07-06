@@ -5,7 +5,7 @@ Loops are foundational to programming. If you want something to move across your
 > [!NOTE]
 > If you don't know what scope is, you should take this sidequest; otherwise, read on!
 
-Whereas the `setup()` function runs only one time when the program starts, the `loop()` function starts running over and over as soon as the `setup()` function finishes with its last command. Let's use that loop to do some fun things with our "Hello World" program. Let's start by making our text and box blink.
+Whereas the `setup()` function runs only one time when the program starts, the `loop()` function starts running over and over as soon as the `setup()` function finishes with its last command. Let's use that loop to do some fun things with our "Hello World" program. How about we start by making our text and box blink.
 
 When writing a program, it's best to think about the individual steps you need to take to achieve your goal. Our goal is to put some text on the screen (we've already done that), remove it, then put it back again, over and over. Since we already put our text on the screen in the `setup()` function, we'll start our loop by removing it.
 
@@ -25,7 +25,7 @@ lcd.setCursor(94, 112);
 lcd.println("Hello World");
 ```
 
-You could compile and upload the program just like this, but you'll see that that the text and box are just flickering, not really blinking. What we need is a way to delay the transition between the two states. Thankfully, because you're using Arduino IDE, you have access to a few very useful functions. One of those is `delay()` which simply forces your program to wait for a set number of milliseconds before running again. Let's set our delay to 250 milliseconds so our screen will change state every quarter second. Put one `delay()` before `fillScreen()` and one delay after.
+You could compile and upload the program just like this, but you'll see that that the text and box are just flickering, not really blinking. What we need is a way to delay the transition between the two states. Thankfully, because you're using Arduino IDE, you have access to a few very useful functions. One of those is `delay()` which simply forces your program to wait for a set number of milliseconds before running again. Let's set our delay to 250 milliseconds so our screen will change state every quarter second. Put one `delay()` before `fillScreen()` and one delay after, but before our `fillRect()`, `setCursor()`, and `println()`.
 
 ```c++
 delay(250);
@@ -67,7 +67,7 @@ Neat! `loop()` runs over and over, and every time it does, new x and y values ar
 
 Okay, this *is* neat, but the random blinking is a little hectic. Let's slow it down and make a transition effect for our text/box. What if, instead of blinking off, it disapeared row by row? It sounds fun. Let's do it. 
 
-First, let's figure out what we want to do. Instead of using `fillScreen()` to wipe away our text and box, we want to cover it up one column at a time. Let's use `fillRect()` to cover it up with 1-pixel-wide rectangles. We could do this by filling our code with 140 `fillRect()` commands, or we could put a loop inside of our `loop()`. Specifically, a special type of loop that counts through a sequence of numbers called a `for` loop. It looks like this:
+First, let's figure out what we want to do. Instead of using `fillScreen()` to wipe away our text and box, we want to cover it up one column at a time. Let's use `fillRect()` to cover it up with 1-pixel-wide rectangles. We could do this by filling our code with 140 `fillRect()` commands, or we could put a loop inside of our `loop()`. Specifically, a special type of loop that counts through a sequence of numbers called a for loop. It looks like this:
 
 ```c++
 for (initialization; condition; increment) {
@@ -79,17 +79,17 @@ for (initialization; condition; increment) {
 
 <var>`condition`</var> determines when we stop counting and end the loop. We want to stop our loop after it runs 140 times, the pixel width of our rectangle. In other words as long as our initial value is ≤140.
 
-<var>`increment`</var> is by how much our initial value should change each iteration of the loop. Since we're going to be going column-by-column, we'll want this to be +1 each loop. 
+<var>`increment`</var> is by how much our initial value should change each iteration of the loop. Since we're going to be going column-by-column, left-to-right, we'll want this to be +1 each loop. 
 
 Let's put all that together and see what it looks like.
 
 ```c++
-for (int i = 0; i <= 140 ; i++) {
+for (int i = 0; i <= 140; i++) {
   ...
 }
 ```
 
-To figure out what we need to do in our loop, we need to better understand what the `for` loop is doing. The first iteration of the loop, the value of <var>`i`</var> is 0, but before anything runs, the loop checks to see if the <var>`condition`</var> is true. If it is, it runs the code between the curly braces, then it increments the <var>`i`</var> variable to 1, and the process repeats. It will repeat as long as <var>`i`</var> is less than or equal to 140. Once it increments past 140, the `for` loop will end. 
+To figure out what we need to do in our loop, we need to better understand what the for loop is doing. The first iteration of the loop, the value of <var>`i`</var> is 0, but before anything runs, the loop checks to see if the <var>`condition`</var> is true. If it is, it runs the code between the curly braces, then it increments the <var>`i`</var> variable to 1, and the process repeats. It will repeat as long as <var>`i`</var> is less than or equal to 140. Once it increments past 140, the for loop will end. 
 
 To figure out what code we need between the curly braces, think about what action we want to take 140 times. `fillRect()` Let's start plugging in values.
 
@@ -115,28 +115,42 @@ Now, we need to figure out the x and y position of the top of our 1-pixel rectan
 fillRect(?, y, 1, 24, TFT_BLUE);
 ```
 
-To figure out the x position we need to think about the changing value of <var>`i`</var> in our `for` loop and integrate that with the random <var>`x`</var> value we generated at the start of this `loop()`. We know the first skinny rectangle we want to draw should be at the <var>`x`</var> position and our initial <var>`i`</var> value will be 0, and the next one should be 1 pixel over and our <var>`i`</var> value will be 1, and the one after that should be 2 pixels over from the original and our <var>`i`</var> will be 2. Do you see the pattern?
+To figure out the x position we need to think about the changing value of <var>`i`</var> in our for loop and integrate that with the random <var>`x`</var> value we generated at the start of this `loop()`. We know the first skinny rectangle we want to draw should be at the <var>`x`</var> position and our initial <var>`i`</var> value will be 0, and the next one should be 1 pixel over and our <var>`i`</var> value will be 1, and the one after that should be 2 pixels over from the original and our <var>`i`</var> will be 2. Do you see the pattern?
 
 ```c++
 fillRect(x + i, y, 1, 24, TFT_BLUE);
 ```
 
-All together, your `for` loop should look like this:
+All together, your for loop should look like this:
 
 ```c++
-for (int i = 0; i <= 140 ; i++) {
+for (int i = 0; i <= 140; i++) {
   lcd.fillRect(x + i, y, 1, 24, TFT_BLUE);
 }
 ```
 
-To get the effect we want, we'll have to modify our program a tad. First, we have to remove the `println()` and `fillRect()` methods from the `setup()` function, otherwise, we'll have an instance of "Hello World" that doesn't get erased (you can toss out the first `setCursor()` method as well). Next, in the `loop()` function, replace your `fillScreen()` method with the `fillRect()`, `setCursor()`, and `println()` methods. Finally, place your `for` loop where the `fillRect()`, `setCursor()`, and `println()` methods were. 
+To get the effect we want, we'll have to modify our program a tad. Let's think about the flow of our program as it currently is.
 
-Previously, we were making our text and box in the `setup()` function, then erasing and redrawing it (in that order) in the `loop()` function. With this new logic, we don't want to draw anything in the `setup()` block, so instead we have to do that in `loop()`, and then we can erase it with our `for` loop. 
+1. In `setup()`, we initialize the screen, set up our text, and draw our box and text onto the display.
+2. In `loop()`, we use `fillScreen()` to clear away our text, *then* we put our box and text somewhere random on the screen.
 
-If that doesn't make any sense, take a look at the hello-world-wipe-blink.ino file to see what I mean.
+With our new logic, our flow is a little bit different.
+1. In `setup()`, we still initialize the screen and our text, but because our for loop relies on the random <var>`x`</var> and <var>`y`</var> values we generate to "wipe" away our text, we can't draw any text until we have those values. Those values are generated in the `loop()` function, so that's where our text and box drawing have to be.
+2. In `loop()`, since there's no text on screen we have to:
+  1. get our random numbers,
+  2. draw our box and text, and
+  3. erase it with our for loop.
+
+First, we have to remove the `println()` and `fillRect()` methods from the `setup()` function, otherwise, we'll have an instance of "Hello World" that doesn't get erased (you can toss out the first `setCursor()` method as well). Next, in the `loop()` function, replace your `fillScreen()` method with the `fillRect()`, `setCursor()`, and `println()` methods. Finally, place your for loop where the `fillRect()`, `setCursor()`, and `println()` methods were. 
+
+Previously, we were making our text and box in the `setup()` function, then erasing and redrawing it (in that order) in the `loop()` function. With this new logic, we don't want to draw anything in the `setup()` block, so instead we have to do that in `loop()`, and then we can erase it with our for loop. 
+
+If that doesn't make any sense, take a look at the [hello-world-wipe-blink.ino](hello-world-wipe-blink.ino) file to see what I mean.
 
 <img src="../assets/img/cyd-fast-wipe-erase.gif" alt="CYD Hello World blink with a fast wipe erase">
 
 Honestly, this is still a little to busy for me. Let's stick another `delay()` *inside* the `for` loop to slow things down. Maybe just 2 millisecond?
 
 <img src="../assets/img/cyd-smooth-wipe-erase.gif" alt="CYD Hello World blink with a smooth wipe erase">
+
+Much better.
