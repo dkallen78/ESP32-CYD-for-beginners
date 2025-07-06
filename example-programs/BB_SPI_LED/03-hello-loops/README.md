@@ -137,9 +137,9 @@ To get the effect we want, we'll have to modify our program a tad. Let's think a
 With our new logic, our flow is a little bit different.
 1. In `setup()`, we still initialize the screen and our text, but because our for loop relies on the random <var>`x`</var> and <var>`y`</var> values we generate to "wipe" away our text, we can't draw any text until we have those values. Those values are generated in the `loop()` function, so that's where our text and box drawing have to be.
 2. In `loop()`, since there's no text on screen we have to:
-  1. get our random numbers,
-  2. draw our box and text, and
-  3. erase it with our for loop.
+   1. get our random numbers,
+   2. draw our box and text, and
+   3. erase it with our for loop.
 
 First, we have to remove the `println()` and `fillRect()` methods from the `setup()` function, otherwise, we'll have an instance of "Hello World" that doesn't get erased (you can toss out the first `setCursor()` method as well). Next, in the `loop()` function, replace your `fillScreen()` method with the `fillRect()`, `setCursor()`, and `println()` methods. Finally, place your for loop where the `fillRect()`, `setCursor()`, and `println()` methods were. 
 
