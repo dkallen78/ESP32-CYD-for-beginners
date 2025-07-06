@@ -1,3 +1,5 @@
+# Hello World++
+
 Okay, you have a "Hello World" program up and running on your CYD, but it's kind of ugly, so let's see what else the BB_SPI_LCD library can offer us to make our program a bit more pretty.
 
 The first thing we can do is use the `fillScreen()` method to fill our display with a more pleasing color instead of the actinic bars of our current program. 
@@ -67,3 +69,5 @@ Since that will be the same color as our text, we'll also have to swap out our f
 <img src="../assets/img/cyd-hello-world-center-box-bb.jpg" alt="CYD Hello World program with centered text and box">
 
 Keep in mind that the order in which you do things matters. If you put the text on the screen first, there's a chance that any box you draw afterwards will cover your text.
+
+Now that you've got some rudimentary control over text output, [let's play](../03-hello-loops/) with the `loop()` function!
