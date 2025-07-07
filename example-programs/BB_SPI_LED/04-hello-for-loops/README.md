@@ -97,6 +97,7 @@ int y = random(?);
 216
 
 Because our minimum value is 0, we only need to pass one argument to `random()`. Our maximum value is 216, which is 24 (the height in pixels of our box) less than 240 (the maximum displayable y value on the CYD).
+
 ---
 </details>
 
