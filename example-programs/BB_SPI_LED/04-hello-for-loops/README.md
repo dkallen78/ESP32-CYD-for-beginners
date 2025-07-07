@@ -41,17 +41,7 @@ for (int i = 140; i >= 0; i--) {
 
 Neat. 
 
-Let's go just one step further. How about we wipe it from both ends at the same time? You might think that you would need two for loops to achieve this, and you could indeed accomplish this with nested for loops,
-
-```c++
-for (int i = 0; i <= 70; i++) {
-  for (int j = 140; j > 70; j--) {
-    ...
-  }
-}
-```
-
-but there's a simpler way to do this. For loops can initialize and iterate two variables at the same time. We already know the numbers we're working with, so let's plug everything in.
+Let's go just one step further. How about we wipe it from both ends at the same time? You might think that you would need two for loops to achieve this, but there's a simpler way to do it. For loops can initialize and iterate two variables at the same time. We already know the numbers we're working with, so let's plug everything in.
 
 Let's use <var>`i`</var> to draw our skinny rectangles from left to center and <var>`j`</var> to draw them from right to center. That means <var>`i`</var> will start at 0 and <var>`j`</var> will start at 140. We also know that <var>`i`</var> needs to count up, while <var>`j`</var> needs to count down. All that leaves is our condition. As long as our <var>`i`</var> value is no more than than half the length of our rectangle (140 / 2 = 70), the for loop should continue. Let's plug all of that into our new for loop.
 
@@ -68,85 +58,50 @@ lcd.fillRect(x + j, y, 1, 24, TFT_BLUE);
 
 <img src="../assets/img/cyd-hello-world-double-wipe.gif" alt="CYD Hello World program with double wipe">
 
-This is fun (at least I think it is). Let's change things up and instead of wiping away our "Hello World," let's have it crawl across the screen from left to right, restarting from a random position each time it crawls off the right edge. At this point, you should give this a try by yourself if you're feeling up to it (even if it takes you a few tries). If you get it to work and your code is different than mine, share it with me and I'll put it at the end of this README so people can see all the different ways there are to do the same thing. If you're not feeling confident enough at this point, no worries!
+That's a neat effect, but let's switch gears and instead of removing our text box, let's move it. In particular, let's move it from the top of the screen to the bottom over and over. Think about what needs to be done in order to achieve this. 
 
-As always, let's think about what we need to do in a step-by-step manner.
+* The text and box need to be drawn. 
+* We need to remove our text box and we need to redraw it in a slightly different position. 
+* And we need to change the direction of movement whenever the text box reaches the edge of the screen.
 
-1. We need to draw our box and text.
-2. We need to redraw it over and over until it has crawled off the screen.
-3. We need to do it all over again.
+Knowing what needs to be done, and having all the knowledge you need to do it, see if you can work out how to do this on your own. If you need to follow along with my explanation, that's okay, but if you can make it work without the guide, share your solution and I'll share it in this README so others can see how many different ways there are to achieve the same outcome. 
 
-There are some important details missing here but this is a good place to start. We know we're going to have to use the `fillRect()`, `println()`, and `fillScreen()` methods that we should be fairly familiar with. We know we're going to need a for loop to increment the <var>`x`</var> value of our text. And we know we need to put it inside the `loop()` function to make it repeat. Hopefully you can roughly picture how those elements will be arranged. Let's get into the weeds so we can start putting everything together.
+> [!TIP]
+> One of the easiest ways to code this is to use two for loops.
 
-1. We need to draw our box and text.
+Based on our previous programs, we know that we need to use `fillRect()` to draw a box, `setCursor()` to pre-position our text, and `println()` to draw the text. Then we need a brief `delay()` which we need to follow up with overwriting it all and doing it again. We're going to do this the easy way and use two for loops, so let's start with the first one.
 
-Since we already know what we're going to draw and how to draw it, the next most important thing is where we're going to draw it. We know we want the text to appear from a random place on the side of the screen, so that means we'll need the `random()` function. The size of the CYD display is 240 pixels but do we want to use the full visible vertical range of the display? When I use randomly generated numbers I like to imagine what would happen with the two most extreme values. 
-
-* If <var>`y`</var> = 0, then the top-left corner of the box will be flush with the top of the screen as it crawls from left to right.
-* If <var>`y`</var> = 240, then the top-left corner of the box will be flush with the bottom of the screen, and noting will render since it's all below the bottom of the screen.
-
-Clearly a <var>`y`</var> value of 240 is unacceptable. We want all of our text to be visible as it crawls across the screen. That means we need to offset our maximum <var>`y`</var> value by the pixel height of our box, 24 pixels.
+This first for loop is going to move our text box from the top of the screen to the bottom (this tells us what our initial value needs to be, under what conditions the for loop should continue, and whether our initial value should increment or decrement). And because our text box will only go up and down, we only need to change the value for one of the axes. Finally, since we don't want our text to go off screen, we need to modify the condition for our for loop. So what values do we need to put in?
 
 ```c++
-int y = random(?);
+for (int i = ?; i <> ?; ?) {
+  lcd.fillRect(?, ?, 140, 24, TFT_YELLOW);
+  lcd.setCursor(?, ?);
+  lcd.println("Hello World");
+  delay(1);
+  lcd.fillScreen(TFT_BLUE);
+}
 ```
 
 <details>
-<summary>What's the answer?</summary>
+<summary>Show the answer</summary>
 
 ---
-216
-
-Because our minimum value is 0, we only need to pass one argument to `random()`. Our maximum value is 216, which is 24 (the height in pixels of our box) less than 240 (the maximum displayable y value on the CYD).
-
----
-</details>
-
-For our crawling "Hello World," we don't need a random <var>`x`</var> value because the path of our box along the x axis is going to be the same for every loop. We want our crawl to be from left to right and the left-most pixel is 0, right? 
-
-No. 
-
--1 is to the left of 0 on the Cartesian plane. Our box needs to crawl in from off screen, so our initial <var>`x`</var> value needs to be a negative number. Which negative number? Remember, our box is 140 pixels wide.
-
 ```c++
-lcd.fillRect(?, y, 140, 24, TFT_BLUE);
+for (int i = 0; i <= 216; i++) {
+  lcd.fillRect(90, i, 140, 24, TFT_YELLOW);
+  lcd.setCursor(94, i + 4);
+  lcd.println("Hello World");
+  delay(1);
+  lcd.fillRect(90, i - 1, 140, 1, TFT_BLUE);
+}
 ```
 
-<details>
-<summary>What's the answer?</summary>
-
----
--140
-
-Our box is 140 pixels wide, so in order to be placed completely outside of the visible display, the starting position needs to be at least as far away from the x origin as the box is wide.
-
----
-</details>
-
-That takes care of drawing our first box. What's next?
-
-2. We need to redraw it over and over until it has crawled off the screen.
-
-If we need to do something multiple times, it's a good bet that there's going to be a loop involved, and I just checked, and we're in a folder called "04-hello-for-loops" so let's use one of those. The question is, how do we set it up? 
-
-* What value do we want to change with each loop? 
-* What should the initial starting value be?
-* Under what conditions should the loop run?
-* How much do we want our value to change? 
-
-Our box is going to be moving left to right which means only its x position is changing on each loop. The starting value should be far enough left that none of the box is drawn on the first loop. The loop should run as long as the box is on screen. The per-loop increment is something that we can play with, but I like to start with 1 pixel per loop and see if we need to tweak it from there. So what will all that look like in our for loop logic?
-
-```c++
-for (?; ?; ?)
-```
-
-<details>
-<summary>What's the answer?</summary>
-
----
-```-140```
-
-Our box is 140 pixels wide, so in order to be placed completely outside of the visible display, the starting position needs to be at least as far away from the x origin as the box is wide.
+* `int i = 0` Because we're starting at the top of the screen, our initial value should be 0.
+* `i <= 216` The max height of the CYD screen is 240 pixels, but since our text box is 24 pixels high, we have to compensate for that in our condition.
+* `i++` We want to increment our initial value since we're progressing from 0 to 216.
+* `lcd.fillRect(90, i, 140, 24, TFT_YELLOW);` We're moving the box up and down so we want the <var>`y`</var> value of our text box to change, the <var>`x`</var> value can stay the same.
+* `lcd.setCursor(94, i + 4);` Likewise, we're going to be changing the <var>`y`</var> position of our text, but we need to offset it by 4 pixels so it's centered in the rectangle.
 
 ---
 </details>
