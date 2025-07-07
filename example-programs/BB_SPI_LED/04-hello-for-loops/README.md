@@ -97,6 +97,7 @@ int y = random(?);
 216
 
 Because our minimum value is 0, we only need to pass one argument to `random()`. Our maximum value is 216, which is 24 (the height in pixels of our box) less than 240 (the maximum displayable y value on the CYD).
+---
 </details>
 
 For our crawling "Hello World," we don't need a random <var>`x`</var> value because the path of our box along the x axis is going to be the same for every loop. We want our crawl to be from left to right and the left-most pixel is 0, right? 
