@@ -92,7 +92,7 @@ int y = random(?);
 ```
 
 <details>
-<summary>What's the answer?</summary><br>
+<summary>What's the answer?</summary>
 
 ---
 216
