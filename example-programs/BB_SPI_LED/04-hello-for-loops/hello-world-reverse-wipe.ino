@@ -23,8 +23,9 @@ void loop() {
 
   delay(250);
 
-  for (int i = 0; i <= 140; i++) {
+  for (int i = 140; i >= 0; i--) {
     delay(2);
     lcd.fillRect(x + i, y, 1, 24, TFT_BLUE);
   }
+
 }

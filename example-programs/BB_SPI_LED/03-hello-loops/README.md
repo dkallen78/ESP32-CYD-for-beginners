@@ -145,8 +145,10 @@ See if you can put that together yourself with the pieces we've laid out here, b
 
 <img src="../assets/img/cyd-fast-wipe-erase.gif" alt="CYD Hello World blink with a fast wipe erase">
 
-Honestly, this is still a little to busy for me. Let's stick another `delay()` *inside* the `for` loop to slow things down. Maybe just 2 millisecond?
+Honestly, this is still a little to busy for me. Let's stick another `delay()` *inside* the `for` loop to slow things down. Maybe just 2 milliseconds?
 
 <img src="../assets/img/cyd-smooth-wipe-erase.gif" alt="CYD Hello World blink with a smooth wipe erase">
 
 Much better.
+
+For loops are really powerful programming tool, and if you have a rudimentary grasp on how they work, you can do some fun things. [Let's dive in](../04-hello-for-loops/).
