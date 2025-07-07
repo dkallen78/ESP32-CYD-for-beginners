@@ -112,6 +112,17 @@ No.
 lcd.fillRect(?, y, 140, 24, TFT_BLUE);
 ```
 
+<details>
+<summary>What's the answer?</summary>
+
+---
+-140
+
+Our box is 140 pixels wide, so in order to be placed completely outside of the visible display, the starting position needs to be at least as far away from the x origin as the box is wide.
+
+---
+</details>
+
 That takes care of drawing our first box. What's next?
 
 2. We need to redraw it over and over until it has crawled off the screen.
@@ -122,3 +133,20 @@ If we need to do something multiple times, it's a good bet that there's going to
 * What should the initial starting value be?
 * Under what conditions should the loop run?
 * How much do we want our value to change? 
+
+Our box is going to be moving left to right which means only its x position is changing on each loop. The starting value should be far enough left that none of the box is drawn on the first loop. The loop should run as long as the box is on screen. The per-loop increment is something that we can play with, but I like to start with 1 pixel per loop and see if we need to tweak it from there. So what will all that look like in our for loop logic?
+
+```c++
+for (?; ?; ?)
+```
+
+<details>
+<summary>What's the answer?</summary>
+
+---
+```-140```
+
+Our box is 140 pixels wide, so in order to be placed completely outside of the visible display, the starting position needs to be at least as far away from the x origin as the box is wide.
+
+---
+</details>
