@@ -84,24 +84,84 @@ for (int i = ?; i <> ?; ?) {
 ```
 
 <details>
+  <summary>Show the answer</summary>
+
+  ---
+  ```c++
+  for (int i = 0; i <= 216; i++) {
+    lcd.fillRect(90, i, 140, 24, TFT_YELLOW);
+    lcd.setCursor(94, i + 4);
+    lcd.println("Hello World");
+    delay(1);
+    lcd.fillScreen(TFT_BLUE);
+  }
+  ```
+
+  * `int i = 0` Because we're starting at the top of the screen, our initial value should be 0.
+  * `i <= 216` The max height of the CYD screen is 240 pixels, but since our text box is 24 pixels high, we have to compensate for that in our condition.
+  * `i++` We want to increment our initial value since we're progressing from 0 to 216.
+  * `lcd.fillRect(90, i, 140, 24, TFT_YELLOW);` We're moving the box up and down so we want the <var>`y`</var> value of our text box to change, the <var>`x`</var> value can stay the same.
+  * `lcd.setCursor(94, i + 4);` Likewise, we're going to be changing the <var>`y`</var> position of our text, but we need to offset it by 4 pixels so it's centered in the rectangle.
+  * `delay(1)` Honestly, this can be any value you want.
+
+  Hopefully all of that makes sense.
+
+  ---
+</details>
+
+Now let's try our hand at the second for loop that will take our text back up the screen. We're going to do things in the same order, but the direction of movement is different, so we need to swap some of our values around. Try to make this loop on your own.
+
+```c++
+for (int i = ?; i <> ?; ?) {
+  lcd.fillRect(?, ?, 140, 24, TFT_YELLOW);
+  lcd.setCursor(?, ?);
+  lcd.println("Hello World");
+  delay(1);
+  lcd.fillScreen(TFT_BLUE);
+}
+```
+
+<details>
 <summary>Show the answer</summary>
 
 ---
 ```c++
-for (int i = 0; i <= 216; i++) {
+for (int i = 216; i >= 0; i--) {
   lcd.fillRect(90, i, 140, 24, TFT_YELLOW);
   lcd.setCursor(94, i + 4);
   lcd.println("Hello World");
   delay(1);
-  lcd.fillRect(90, i - 1, 140, 1, TFT_BLUE);
+  lcd.fillScreen(TFT_BLUE);
 }
 ```
 
-* `int i = 0` Because we're starting at the top of the screen, our initial value should be 0.
-* `i <= 216` The max height of the CYD screen is 240 pixels, but since our text box is 24 pixels high, we have to compensate for that in our condition.
-* `i++` We want to increment our initial value since we're progressing from 0 to 216.
-* `lcd.fillRect(90, i, 140, 24, TFT_YELLOW);` We're moving the box up and down so we want the <var>`y`</var> value of our text box to change, the <var>`x`</var> value can stay the same.
-* `lcd.setCursor(94, i + 4);` Likewise, we're going to be changing the <var>`y`</var> position of our text, but we need to offset it by 4 pixels so it's centered in the rectangle.
+* `int i = 216` Because we're starting at the bottom this time, our initial value should be what it was at the end of the last loop.
+* `i >= 0` Since we're going back to the top of the screen, we don't want our y position to drop below 0.
+* `i++` We want to decrement our initial value since we're moving from 216 to 0.
+
+Our drawing commands are all the same, so we don't need to change any of those.
 
 ---
 </details>
+
+Once you've got all of this straightened out, drop those for loops into your `loop()` function (leave the `setup()` function as it was in the [hello-world-double-wipe.ino](hello-world-double-wipe.ino) file) and compile it.
+
+<img src="../assets/img/cyd-hello-world-ugly-moving-text.gif" alt="CYD Hello World with flickering moving text">
+
+It doesn't look good. It's slow and it flickers. What's happening here? The problem is we're using the "nuclear option" to clear the screen every frame — `fillScreen()`. A better solution would be if we could just erase the parts that aren't blue so we can draw our updated text box on a clean palette. Thankfully, we have the `fillRect()` method that does exactly what we need, and all we have to do is draw the same rectangle we just did, only swap out yellow for blue.
+
+```c++
+lcd.fillRect(90, i, 140, 24, TFT_BLUE);
+```
+
+<img src="../assets/img/cyd-hello-world-better-moving-text.gif" alt="CYD Hello World with moving text with less flicker">
+
+Ooh, that looks much better, but there's one more optimization we can make that will make it look better. Originally, we were drawing over all of the screen. With this program we're drawing over just the rectangle. But really, we can get away with erasing a line that's 1 pixel by 140 pixels each frame. When the text box is descending, we need to erase the line at the top of the box. When it's moving back up, we need to erase the line at the bottom. The y coordinate for the top of the box is <var>`i`</var>, and the y coordinate for the bottom is <var>`i`</var> + 24 (the pixel height of our box). Modify the two `fillRect()` methods to draw a 1 by 140 pixel box at those coordinates.
+
+[If you did it right](hello-world-up-down.ino), your text box should have just a slight flicker and the whole thing should move much smoother.
+
+<img src="../assets/img/cyd-hello-world-smooth-moving-text.gif" alt="CYD Hello World with smooth moving text">
+
+Nice.
+
+If you're up for the challenge, there are some clever ways to refactor these two for loops so that you only need one. [Here's one way](hello-world-up-down-one-for.ino) I did it using the `abs()` function and the conditional operator (it's a fancy if statement).
