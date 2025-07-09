@@ -28,7 +28,7 @@ The `void` at the beginning indicates what type of value the function will retur
 
 Function names should be named with the same descriptive rigor and brevity as variable names. You *can* call it `doTheThing()` but that isn't very helpful to future you. 
 
-The `int parameter` part inside the parentheses is a value that you're sharing with the function; a value it probably needs to work right. This is analagous to declaring a variable so you need to give it a type.
+The `int parameter` part inside the parentheses is a value that you're sharing with the function, a value it probably needs to work right. This is analagous to declaring a variable so you need to give it a type.
 
 When I try to refactor repetitive code into a function, I like to start with just the rough outline of a function and add what I need as I go. Another function design principle is to keep the scope of the function as limited as possible. In this case, even though I have four identical lines in each for loop, I'm going to omit `delay()` from my function because it's doing something different than the three lines before it.
 
@@ -145,16 +145,19 @@ String text = "Greetings Planet";
 
 <img src="../assets/img/cyd-greetings-planet-with-bug.gif" alt="CYD Greetings Planet program with a visual bug">
 
-Nuts. We've got a bug. Based on what's on the screen, can you look at the code and figure out where it all went wrong?
+Nuts. 
+
+We've got a bug. Based on what's on the screen, can you look at the code and figure out where it all went wrong?
 
 <details>
   <summary>Where it went wrong</summary>
+
   ---
   The `fillRect()` methods we're using in our for loops to erase our box as it moves are still set to 140 pixels, but our string now takes up 192 pixels, which means there are 26 pixles on each side not getting erased.
 
   ---
 </details>
 
-The trivial way to fix this is to move the `delay()` function and `fillRect()` method still in the for loops into our `drawTextBox()` function, then replace `140` with <var>`boxWidth`</var>, but that still leaves the issue of whether to erase from the top or bottom, and it seriously violates the principle of Separation of Concerns (our functions should only be doing one thing).
+The trivial way to fix this is to move the `delay()` function and `fillRect()` method still in the for loops into our `drawTextBox()` function, then replace `90` with <var>`boxXoffset`</var> and `140` with <var>`boxWidth`</var>, but that still leaves the issue of whether to erase from the top or bottom, and it seriously violates the principle of Separation of Concerns (our functions should only be doing one thing).
 
 We could calculate all of our variables in the `loop()` function, but then we'd have to pass six arguments into `drawTextBox()` and that seems unwieldy, so we're going to need approach this from a different angle.
