@@ -156,7 +156,7 @@ lcd.fillRect(90, i, 140, 24, TFT_BLUE);
 
 <img src="../assets/img/cyd-hello-world-better-moving-text.gif" alt="CYD Hello World with moving text with less flicker">
 
-Ooh, that looks much better, but there's one more optimization we can make that will make it look better. Originally, we were drawing over all of the screen. With this program we're drawing over just the rectangle. But really, we can get away with erasing a line that's 1 pixel by 140 pixels each frame. When the text box is descending, we need to erase the line at the top of the box. When it's moving back up, we need to erase the line at the bottom. The y coordinate for the top of the box is <var>`i`</var>, and the y coordinate for the bottom is <var>`i`</var> + 24 (the pixel height of our box). Modify the two `fillRect()` methods to draw a 1 by 140 pixel box at those coordinates.
+Ooh, that looks much better, but there's one more optimization we can make that will make it look better still. Originally, we were drawing over all of the screen. With this program we're drawing over just the rectangle. But really, we can get away with erasing a line that's 1 pixel by 140 pixels each frame. When the text box is descending, we need to erase the line at the top of the box. When it's moving back up, we need to erase the line at the bottom. The y coordinate for the top of the box is <var>`i`</var>, and the y coordinate for the bottom is <var>`i`</var> + 24 (the pixel height of our box). Modify the two `fillRect()` methods to draw a 1 by 140 pixel box at those coordinates.
 
 [If you did it right](hello-world-up-down.ino), your text box should have just a slight flicker and the whole thing should move much smoother.
 
@@ -165,3 +165,5 @@ Ooh, that looks much better, but there's one more optimization we can make that 
 Nice.
 
 If you're up for the challenge, there are some clever ways to refactor these two for loops so that you only need one. [Here's one way](hello-world-up-down-one-for.ino) I did it using the `abs()` function and the conditional operator (it's a fancy if statement).
+
+Of course, there are also some things we can do to improve our version with two for loops. Let's see what we can do to make it more robust.
