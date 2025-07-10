@@ -25,7 +25,7 @@ And that variable on the inside? That's technically called an attribute and you 
 myObject.someVariable
 ```
 
-So far so good? See that `public` bit? That means that everything below `public` is available for use outside of the class (more on that another time). The important thing is that you can not only declare as many variables/attributes as you'd like, you can also create functions/methods. Let's make a class for our text box.
+So far so good? See that `public` bit? That means that everything below `public` is available for use outside of the class (more on that another time). The important thing is that you can not only declare as many variables/attributes as you'd like, you can also create functions/methods. Let's go ahead and make a class for our text box.
 
 ## Making the text box class
 
@@ -51,7 +51,7 @@ class TextBox {
 };
 ```
 
-This is enough to get us started and we can start to see some benefit if we drop it into our program.
+This is enough to get us started and we can start to see some benefit if we drop it into our program (it needs to be in the global scope, so I put it just before `setup()`). 
 
 To use it, we'll need to create an instance of it and define its attributes.
 
@@ -111,3 +111,126 @@ Between these three commands — the heart of the function — there are seven v
 * <var>`textXoffset`</var> – comes from <var>`textWidth`</var> which comes from <var>`text.length()`</var> and <var>`charWidth`</var>
 * <var>`text`</var> – passed into the function as an argument
 
+<var>`yPos`</var>, <var>`TFT_YELLOW`</var>, and <var>`text`</var> are already accounted for. <var>`yPos`</var> and <var>`TFT_YELLOW`</var> aren't part of our <var>`textBox`</var> object and <var>`text`</var> is already part of it, so that leaves the other four for us to make methods for.
+
+Let's start with the first one, <var>`boxXoffset`</var>. We need to figure out three things to make our first method:
+
+1. Will our method return a value, and if so, which type will it return?
+2. Does our method require a parameter — outside information — to do its job?
+3. What does our method need to do in order to do what we want it to?
+
+```c++
+class TextBox {
+  public:
+    ? boxXoffset(?) {
+      ???
+    }
+};
+```
+
+1. Yes, our method should return an `int` value.
+2. No, (at the moment 😉) this method doesn't need outside data to function.
+3. We need to get the offset based on <var>`text.length()`</var> and <var>`charWidth`</var>
+
+Here's what that looks like:
+
+```c++
+int boxXoffset() {
+  return 160 - (((text.length() * charWidth) + 8) / 2);
+}
+```
+> [!NOTE]
+> The <var>`text.length()`</var> and <var>`charWidth`</var> names are already defined in our class, which is why we can use them here in this class method.
+
+This is a good start, lets put our other methods together and see if any other optimizations show up.
+
+Follow the same method we just used to make `boxXofset()` to make `boxWidth()`. We know we want it to return an integer value, we know we don't need any parameters since the value it returns is based on <var>`text.length()`</var> and <var>`charWidth`</var>, and we know the math we need to do because we already did it.
+
+<details>
+  <summary>Show `boxWidth()` method</summary>
+
+  ---
+  ```c++
+  int boxWidth() {
+    return (text.length() * charWidth) + 8;
+  }
+  ```
+
+  ---
+</details>
+
+Wait a second ... A large chunk of the code in both methods is the same. That's because our original <var>`boxXoffset`</var> variable was based on the value of <var>`boxWidth`</var>. We can replace the code `((text.length() * charWidth) + 8)` in the `boxXoffset()` method with `boxWidth()`:
+
+```c++
+int boxXoffset() {
+  return 160 - (boxWidth() / 2);
+}
+```
+
+`boxHeight` is pretty straightforward since it's just 8 + `lcd.fontHeight()`
+
+```c++
+int boxHeight() {
+  return lcd.fontHeight() + 8;
+}
+```
+
+Let's cap things off with making `textXoffset()`, which should be pretty close to `boxXoffset()`.
+
+```c++
+int textXoffset() {
+  return 160 - ((text.length() * charWidth) / 2);
+}
+```
+
+That should do it for the initial assembly of our new class. It should look something like this:
+
+```c++
+class TextBox {
+  public:
+    String text;
+    int charWidth;
+    int boxWidth() {
+      return (text.length() * charWidth) + 8;
+    }
+    int boxHeight() {
+      return lcd.fontHeight() + 8;
+    }
+    int textXoffset() {
+      return 160 - ((text.length() * charWidth) / 2);
+    }
+    int boxXoffset() {
+      return 160 - (boxWidth() / 2);
+    }
+};
+```
+
+And our `drawTextBox()` function can be drastically simplified: 
+
+```c++
+void drawTextBox(int yPos, TextBox textBox) {
+  lcd.fillRect(textBox.boxXoffset(), yPos, textBox.boxWidth(), textBox.boxHeight(), TFT_YELLOW);
+  lcd.setCursor(textBox.textXoffset(), yPos + 4);
+  lcd.println(textBox.text);
+}
+```
+
+That just leaves the problem of the `fillRect()` methods that weren't erasing correctly.
+
+```c++
+lcd.fillRect(90, i, 140, 1, TFT_BLUE);
+```
+
+We need to replace those numbers <var>`90`</var> and <var>`140`</var> with values from our new class. Recall that <var>`90`</var> here represents the x value represents the top-left corner of the rectangle to be drawn (the center offset), and <var>`140`</var> represents the width of the rectangle.
+
+Plug in the corresponding methods from our class and this should be done.
+
+```c++
+lcd.fillRect(textBox.boxXoffset(), i, textBox.boxWidth(), 1, TFT_BLUE);
+```
+
+and 
+
+```c++
+lcd.fillRect(textBox.boxXoffset(), i + 24, textBox.boxWidth(), 1, TFT_BLUE);
+```
