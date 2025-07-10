@@ -31,7 +31,7 @@ You could compile and upload the program just like this, but you'll see that tha
 delay(250);
 ```
 
-<img src="../assets/img/cyd-blink-hello-world.gif" alt="CYD Hello World program with blinking box and text">
+<img src="../assets/img/03/cyd-blink-hello-world.gif" alt="CYD Hello World program with blinking box and text">
 
 Let's get weird and instead of the text blinking in the same spot, let's have it reappear in a random spot. To make this magic happen we'll need another one of those Arduino functions: `random()`. This function can either take one or two arguments. If you pass just one argument, `random()` will give you a random number between 0 and one less than the number you passed to it. If you give it two arguments, the first will be the inclusive lower bound of the potential number output, and the second will be the exclusive upper bound. 
 
@@ -61,7 +61,7 @@ Now you need to tell the text where to print. Recall that we made the rectangle 
 lcd.setCursor(x + 4, y + 4);
 ```
 
-<img src="../assets/img/cyd-hello-world-random-blink.gif" alt="CYD Hello World program with randomly blinking text">
+<img src="../assets/img/03/cyd-hello-world-random-blink.gif" alt="CYD Hello World program with randomly blinking text">
 
 Neat! `loop()` runs over and over, and every time it does, new x and y values are generated. 
 
@@ -143,11 +143,11 @@ With our new logic, our flow is a little bit different.
 
 See if you can put that together yourself with the pieces we've laid out here, but if you get stuck, take a look at the [hello-world-wipe-blink.ino](hello-world-wipe-blink.ino) file to see one way of organizing this logic.
 
-<img src="../assets/img/cyd-fast-wipe-erase.gif" alt="CYD Hello World blink with a fast wipe erase">
+<img src="../assets/img/03/cyd-fast-wipe-erase.gif" alt="CYD Hello World blink with a fast wipe erase">
 
 Honestly, this is still a little to busy for me. Let's stick another `delay()` *inside* the `for` loop to slow things down. Maybe just 2 milliseconds?
 
-<img src="../assets/img/cyd-smooth-wipe-erase.gif" alt="CYD Hello World blink with a smooth wipe erase">
+<img src="../assets/img/03/cyd-smooth-wipe-erase.gif" alt="CYD Hello World blink with a smooth wipe erase">
 
 Much better.
 

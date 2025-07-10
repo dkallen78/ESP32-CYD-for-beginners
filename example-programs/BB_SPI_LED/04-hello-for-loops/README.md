@@ -37,7 +37,7 @@ for (int i = 140; i >= 0; i--) {
 }
 ```
 
-<img src="../assets/img/cyd-hello-world-reverse-wipe.gif" alt="CYD Hello World program with a reverse wipe">
+<img src="../assets/img/04/cyd-hello-world-reverse-wipe.gif" alt="CYD Hello World program with a reverse wipe">
 
 Neat. 
 
@@ -56,7 +56,7 @@ lcd.fillRect(x + i, y, 1, 24, TFT_BLUE);
 lcd.fillRect(x + j, y, 1, 24, TFT_BLUE);
 ```
 
-<img src="../assets/img/cyd-hello-world-double-wipe.gif" alt="CYD Hello World program with double wipe">
+<img src="../assets/img/04/cyd-hello-world-double-wipe.gif" alt="CYD Hello World program with double wipe">
 
 That's a neat effect, but let's switch gears and instead of removing our text box, let's move it. In particular, let's move it from the top of the screen to the bottom over and over. Think about what needs to be done in order to achieve this. 
 
@@ -146,7 +146,7 @@ Our drawing commands are all the same, so we don't need to change any of those.
 
 Once you've got all of this straightened out, drop those for loops into your `loop()` function (leave the `setup()` function as it was in the [hello-world-double-wipe.ino](hello-world-double-wipe.ino) file) and compile it.
 
-<img src="../assets/img/cyd-hello-world-ugly-moving-text.gif" alt="CYD Hello World with flickering moving text">
+<img src="../assets/img/04/cyd-hello-world-ugly-moving-text.gif" alt="CYD Hello World with flickering moving text">
 
 It doesn't look good. It's slow and it flickers. What's happening here? The problem is we're using the "nuclear option" to clear the screen every frame — `fillScreen()`. A better solution would be if we could just erase the parts that aren't blue so we can draw our updated text box on a clean palette. Thankfully, we have the `fillRect()` method that does exactly what we need, and all we have to do is draw the same rectangle we just did, only swap out yellow for blue.
 
@@ -154,16 +154,16 @@ It doesn't look good. It's slow and it flickers. What's happening here? The prob
 lcd.fillRect(90, i, 140, 24, TFT_BLUE);
 ```
 
-<img src="../assets/img/cyd-hello-world-better-moving-text.gif" alt="CYD Hello World with moving text with less flicker">
+<img src="../assets/img/04/cyd-hello-world-better-moving-text.gif" alt="CYD Hello World with moving text with less flicker">
 
 Ooh, that looks much better, but there's one more optimization we can make that will make it look better still. Originally, we were drawing over all of the screen. With this program we're drawing over just the rectangle. But really, we can get away with erasing a line that's 1 pixel by 140 pixels each frame. When the text box is descending, we need to erase the line at the top of the box. When it's moving back up, we need to erase the line at the bottom. The y coordinate for the top of the box is <var>`i`</var>, and the y coordinate for the bottom is <var>`i`</var> + 24 (the pixel height of our box). Modify the two `fillRect()` methods to draw a 1 by 140 pixel box at those coordinates.
 
 [If you did it right](hello-world-up-down.ino), your text box should have just a slight flicker and the whole thing should move much smoother.
 
-<img src="../assets/img/cyd-hello-world-smooth-moving-text.gif" alt="CYD Hello World with smooth moving text">
+<img src="../assets/img/04/cyd-hello-world-smooth-moving-text.gif" alt="CYD Hello World with smooth moving text">
 
 Nice.
 
 If you're up for the challenge, there are some clever ways to refactor these two for loops so that you only need one. [Here's one way](hello-world-up-down-one-for.ino) I did it using the `abs()` function and the conditional operator (it's a fancy if statement).
 
-Of course, there are also some things we can do to improve our version with two for loops. Let's see what we can do to make it more robust.
+Of course, there are also some things we can do to improve our version with two for loops. Let's see what we can do to [make it more robust](../05-hello-functions/).
