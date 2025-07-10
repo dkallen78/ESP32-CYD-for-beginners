@@ -3,7 +3,7 @@
 Loops are foundational to programming. If you want something to move across your screen, you'll need a loop of some sort to run while your something is moving. If you want to process human input, you'll need to idly loop while waiting for that input. So let's dive in and start playing with the `loop()` function that the Arduino IDE insists upon.
 
 > [!NOTE]
-> If you don't know what scope is, you should take this sidequest; otherwise, read on!
+> If you don't know what scope is, you should [take this sidequest](https://cscircles.cemc.uwaterloo.ca/11b-how-functions-work/); otherwise, read on!
 
 Whereas the `setup()` function runs only one time when the program starts, the `loop()` function starts running over and over as soon as the `setup()` function finishes with its last command. Let's use that loop to do some fun things with our "Hello World" program. How about we start by making our text and box blink.
 

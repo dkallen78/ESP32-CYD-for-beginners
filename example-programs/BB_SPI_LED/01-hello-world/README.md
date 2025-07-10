@@ -30,7 +30,7 @@ The first line of our code tells the compiler to "include" the bb_spi_lcd librar
 BB_SPI_LCD lcd;
 ```
 
-This line creates a new instance of the class `BB_SPI_LCD` and names it <var>lcd</var>. You have to use the exact name `BB_SPI_LCD` because it's defined in the `bb_spi_lcd.h` library, but you can name this instance of it whatever you want. If you do change the name, make sure you change it on lines 6, 7, and 8 as well.
+This line creates a new instance of the class `BB_SPI_LCD` and names it <var>`lcd`</var>. You have to use the exact name `BB_SPI_LCD` because it's defined in the `bb_spi_lcd.h` library, but you can name this instance of it whatever you want. If you do change the name, make sure you change it on lines 6, 7, and 8 as well.
 
 ```c++
 void setup() {
