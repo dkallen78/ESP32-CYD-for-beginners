@@ -45,6 +45,13 @@ TOUCHINFO ti;
 
 <var>`ti`</var> is the name given to this instance of the `TOUCHINFO` structure. It's going to be where our touch input data are stored.
 
+<details>
+  <summary>If statement sidequest!</summary>
+  **If** you already know how if statements work, **then** you can skip this bit, but if you haven't seen them before, you may want to take a look.
+
+
+</details>
+
 ```c++
 lcd.rtReadTouch(&ti);
 ```
@@ -53,10 +60,16 @@ This method takes a reading from the touch input and returns a <var>`0`</var> if
 
 And the ampersand? That's some special C++ magic that indicates that the argument being passed is being passed by reference. Normally, when you pass an argument to a function or method, the function makes its own copy of the argument, but when you pass by reference, the function doesn't create a local copy, it gets linked up to the original variable. 
 
-What does that mean? Think back to the class we made for our Hello World text box. When we passed our <var>`textBox`</var> variable (which was an instance of the TextBox class) to our `drawTextBox()` function, `drawTextBox()` gets a copy of <var>`textBox`</var>, not the original. So, if we change one of the attributes of <var>`textBox`</var> from within the `drawTextBox()` function, that change wouldn't be reflected in our original copy in `loop()`. If, however, we had passed it as a reference, any change made to <var>`textBox`</var> from within `drawTextBox()` would be reflected in the original back in `loop()`.
+What does that mean? Think back to the class we made for our Hello World text box. When we pass our <var>`textBox`</var> variable (which was an instance of the TextBox class) to our `drawTextBox()` function, `drawTextBox()` gets a copy of <var>`textBox`</var>, not the original. So, if we change one of the attributes of <var>`textBox`</var> from within the `drawTextBox()` function, that change wouldn't be reflected in our original copy in `loop()`. If, however, we pass it as a reference, any change made to <var>`textBox`</var> from within `drawTextBox()` will be reflected in the original back in `loop()`.
 
 So what's going on here? `rtReadTouch()` only returns a <var>`1`</var> or a <var>`0`</var>, not the other positional and pressure data we need to make use of touch input. Instead, it makes changes to the values of <var>`ti`</var> locally, and because it's passed as a reference, those changes are reflected in the original copy in `loop()`.
 
 ## Basic state management
 
 Although this program works, there is one glaring flaw in it I want to fix: it has no chill. That is to say, when we're pressing the screen, it prints "Hello World" over and over without end. And if we're not pressing anything, it's constantly runs the `fillScreen()` method. Let's set it up so that we're only printing "Hello World" one time per touch, and likewise only running `fillScreen()` if there's no touch *and* "Hello World" is displayed.
+
+Now that we know what we want to do, we have to figure out how to do it 😅. The simplest way to do this is to create a variable that we can turn "on" or "off" depending on whether our text is on screen. You can call your varaiable whatever you want, but I'm going to make a boolean variable called <var>`onScreen`</var> and set its default value to <var>`false`</var>.
+
+```c++
+bool onScreen = false;
+```
