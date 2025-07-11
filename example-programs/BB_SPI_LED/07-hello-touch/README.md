@@ -47,7 +47,7 @@ TOUCHINFO ti;
 
 <details>
   <summary>If statement sidequest!</summary>
-  **If** you already know how if statements work, **then** you can skip this bit, but if you haven't seen them before, you may want to take a look.
+  <strong>If</strong> you already know how if statements work, <strong>then</strong> you can skip this bit, but if you haven't seen them before, you may want to take a look.
 
 
 </details>
