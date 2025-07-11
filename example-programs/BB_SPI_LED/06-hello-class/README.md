@@ -74,6 +74,8 @@ void drawTextBox(int yPos, TextBox textBox) {
 
 We *could* go ahead and fill our `TextBox` class up with attributes so it can hold all the values we need, but that will clutter up our `loop()` function, and there's a better way to do this: methods.
 
+## Making methods
+
 Because all of our other values are directly derived from <var>`text`</var> and <var>`charWidth`</var>, those are the only ones we have to explicity define. We can use a method to calculate the other ones when we need them.
 
 Methods are defined in pretty much the same way a function is, only we do it inside our class.
@@ -146,18 +148,11 @@ This is a good start, lets put our other methods together and see if any other o
 
 Follow the same method we just used to make `boxXofset()` to make `boxWidth()`. We know we want it to return an integer value, we know we don't need any parameters since the value it returns is based on <var>`text.length()`</var> and <var>`charWidth`</var>, and we know the math we need to do because we already did it.
 
-<details>
-  <summary>Show `boxWidth()` method</summary>
-
-  ---
-  ```c++
-  int boxWidth() {
-    return (text.length() * charWidth) + 8;
-  }
-  ```
-
-  ---
-</details>
+```c++
+int boxWidth() {
+  return (text.length() * charWidth) + 8;
+}
+```
 
 Wait a second ... A large chunk of the code in both methods is the same. That's because our original <var>`boxXoffset`</var> variable was based on the value of <var>`boxWidth`</var>. We can replace the code `((text.length() * charWidth) + 8)` in the `boxXoffset()` method with `boxWidth()`:
 
@@ -234,3 +229,14 @@ and
 ```c++
 lcd.fillRect(textBox.boxXoffset(), i + 24, textBox.boxWidth(), 1, TFT_BLUE);
 ```
+
+If you put [all the parts in the right place](greetings-planet-no-bars.ino), those pesky bars should be gone!
+
+<img src="../assets/img/06/cyd-greetings-planet-no-bars.gif" alt="CYD Greetings Planet program with no movement artifacts">
+
+Here are two things for you to try on your own. 
+
+1. Create a [constructor method](https://www.w3schools.com/cpp/cpp_constructors.asp) that has two parameters: one for the text input and one for the character width.
+2. Refactor the `textXoffset()` and `boxXoffset()` methods into a single method that accepts one argument.
+
+[Here's how I did it](greetings-planet-refactored.ino), but I would love to see how other people do it!
