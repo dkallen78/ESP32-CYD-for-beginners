@@ -239,4 +239,6 @@ Here are two things for you to try on your own.
 1. Create a [constructor method](https://www.w3schools.com/cpp/cpp_constructors.asp) that has two parameters: one for the text input and one for the character width.
 2. Refactor the `textXoffset()` and `boxXoffset()` methods into a single method that accepts one argument.
 
-[Here's how I did it](greetings-planet-refactored.ino), but I would love to see how other people do it!
+[This is how I did it](greetings-planet-refactored.ino), but I would love to see how other people do it!
+
+Now's a good time to pivot to something different. Instead of playing with output, [let's dive into input](../07-hello-touch/).

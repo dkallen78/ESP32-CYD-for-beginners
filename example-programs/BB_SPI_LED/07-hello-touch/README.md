@@ -1,0 +1,62 @@
+# Hello Touch
+
+Until now we've been producing output to display on our CYD screens. We've done some computing and toyed with some data structures, but we haven't done any input with our touch screens. Let's fix that.
+
+Open up this file, copy/paste it into the IDE, and compile/upload it to your CYD.
+
+<img src="../assets/img/07/cyd-hello-touch.gif" alt="CYD Hello Touch program">
+
+## How it works
+
+Neat. Let's do a run down of some of the new stuff we're looking at here.
+
+```c++
+#define TOUCH_MISO 39
+#define TOUCH_MOSI 32
+#define TOUCH_CLK 25
+#define TOUCH_CS 33
+```
+
+These four lines are essentially creating four named constants with number values. These are the internal pins the resistive touch interface on the CYD uses to communicate with the ESP32 at the heart of the CYD.
+
+* `TOUCH_MISO` is the **M**aster **I**n, **S**lave **O**ut pin for the touch interface. The language is outdated but the gist is pretty clear. In this case the "Master" is the MCU and the "Slave" is the SPI device, our touch display. This is the line over which the ESP32 sends input to the touch interface.
+
+* `TOUCH_MOSI` is the **M**aster **O**ut, **S**lave **I**n pin for the touch interface. This is the channel over which the touch interface sends data back to the ESP32.
+
+* `TOUCH_CLK` is the **CL**oc**K** pin. It synchronizes the timing between the MCU and the touch interface. The data are moving around on the order of milliseconds or microseconds, so in order to parse it all, the MCU and the touch interface need a common time frame.
+
+* `TOUCH_CS` is the **C**hip **S**elect pin. When the CYD wants to talk to the touch interface, it sends a signal to this pin so the touch interface knows to listen. When it's done talking, it drops the signal.
+
+```c++
+lcd.rtInit(TOUCH_MOSI, TOUCH_MISO, TOUCH_CLK, TOUCH_CS);
+```
+
+This initializes the resistive touch display using the pin values that were previously defined. 
+
+```c++
+TOUCHINFO ti;
+```
+
+`TOUCHINFO` is a structure (kind of like a class) [defined in the BB_SPI_LCD library](https://github.com/bitbank2/bb_spi_lcd/blob/b243e7421397ba31c6355bad0fd90131ab29508a/src/bb_spi_lcd.h#L89). It has five attributes, but you only have to worry about three of them.
+
+* <var>`x[0]`</var> – the x position of the touch input
+* <var>`y[0]`</var> – the y position of the touch input
+* <var>`pressure[0]`</var> - the pressure/intensity of the touch input from 0 to 100
+
+<var>`ti`</var> is the name given to this instance of the `TOUCHINFO` structure. It's going to be where our touch input data are stored.
+
+```c++
+lcd.rtReadTouch(&ti);
+```
+
+This method takes a reading from the touch input and returns a <var>`0`</var> if there's no touch or a <var>`1`</var> if there is one.
+
+And the ampersand? That's some special C++ magic that indicates that the argument being passed is being passed by reference. Normally, when you pass an argument to a function or method, the function makes its own copy of the argument, but when you pass by reference, the function doesn't create a local copy, it gets linked up to the original variable. 
+
+What does that mean? Think back to the class we made for our Hello World text box. When we passed our <var>`textBox`</var> variable (which was an instance of the TextBox class) to our `drawTextBox()` function, `drawTextBox()` gets a copy of <var>`textBox`</var>, not the original. So, if we change one of the attributes of <var>`textBox`</var> from within the `drawTextBox()` function, that change wouldn't be reflected in our original copy in `loop()`. If, however, we had passed it as a reference, any change made to <var>`textBox`</var> from within `drawTextBox()` would be reflected in the original back in `loop()`.
+
+So what's going on here? `rtReadTouch()` only returns a <var>`1`</var> or a <var>`0`</var>, not the other positional and pressure data we need to make use of touch input. Instead, it makes changes to the values of <var>`ti`</var> locally, and because it's passed as a reference, those changes are reflected in the original copy in `loop()`.
+
+## Basic state management
+
+Although this program works, there is one glaring flaw in it I want to fix: it has no chill. That is to say, when we're pressing the screen, it prints "Hello World" over and over without end. And if we're not pressing anything, it's constantly runs the `fillScreen()` method. Let's set it up so that we're only printing "Hello World" one time per touch, and likewise only running `fillScreen()` if there's no touch *and* "Hello World" is displayed.
