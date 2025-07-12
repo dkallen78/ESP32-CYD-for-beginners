@@ -167,12 +167,30 @@ Let's put those into our if statement.
 
   <h3>And (&&)</h3>
 
-  And resolves as true when both conditions are true.
+  && resolves as true when both conditions are true.
 
   | <strong><h3>AND</h3>   | True  | False</strong> |
   |-------|-------|-------|
   | <strong>True</strong>  | True  | False |
   | | | |
   | <strong>False</strong> | False | False |
+
+  <h3>Or (||)</h3>
+
+  || resolves as true when either condition is true.
+
+  | <strong><h3>OR</h3>   | True  | False</strong> |
+  |-------|-------|-------|
+  | <strong>True</strong>  | True  | True |
+  | | | |
+  | <strong>False</strong> | True | False |
+
+  <h3> Not (!)</h3>
+
+  ! resolves a condition as its opposite.
+
+    | <strong><h3>NOT</h3>   | True  | False</strong> |
+  |-------|-------|-------|
+  |   | False  | True |
 
 </details>
