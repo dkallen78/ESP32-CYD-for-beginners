@@ -10,7 +10,7 @@ Open up this file, copy/paste it into the IDE, and compile/upload it to your CYD
 
 Neat. Let's do a run down of some of the new stuff we're looking at here.
 
-```c++
+```C++
 #define TOUCH_MISO 39
 #define TOUCH_MOSI 32
 #define TOUCH_CLK 25
@@ -45,7 +45,7 @@ TOUCHINFO ti;
 
 <var>`ti`</var> is the name given to this instance of the `TOUCHINFO` structure. It's going to be where our touch input data are stored.
 
-| <details style="background-color:green"> |
+<details style="background-color:green">
   <summary><h3>If statement sidequest!</h3></summary>
 
   ---
@@ -108,7 +108,6 @@ TOUCHINFO ti;
 
 ---
 </details>
-|-|
 
 ```c++
 lcd.rtReadTouch(&ti);
