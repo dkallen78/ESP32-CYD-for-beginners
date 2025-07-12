@@ -45,7 +45,7 @@ TOUCHINFO ti;
 
 <var>`ti`</var> is the name given to this instance of the `TOUCHINFO` structure. It's going to be where our touch input data are stored.
 
-<details style="background-color:green">
+| <details style="background-color:green"> |
   <summary><h3>If statement sidequest!</h3></summary>
 
   ---
@@ -96,8 +96,19 @@ TOUCHINFO ti;
 
   In this case, either one or the other of the two conditions might run, depending on the conditions, but never both. You can put an else at the end of the chain if you need to make sure your program does something, but you might not always need to do something. And you can chain together as many `else if`s as you want after your `if`, but you can only have one `else` and it needs to be at the end.
 
+  ```c++
+  if (condition) {
+    do_something();
+  } else if (condition2) {
+    do_something_else();
+  } else {
+    do_another_thing();
+  }
+  ```
+
 ---
 </details>
+|-|
 
 ```c++
 lcd.rtReadTouch(&ti);
