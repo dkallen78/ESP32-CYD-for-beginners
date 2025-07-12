@@ -163,11 +163,16 @@ Let's put those into our if statement.
 
   where the conditional establishes under what conditions a special block of code will execute. 
   
-  Logical operators set conditions to resolve truth or falsehood when more than one conditional is present
+  Logical operators set conditions to resolve truth or falsehood when more than one conditional is present. There are three logical operators in C++: and, or, and not.
+
+  <h3>And (&&)</h3>
+
+  And resolves as true when both conditions are true.
 
   | <strong><h3>AND</h3>   | True  | False</strong> |
   |-------|-------|-------|
   | <strong>True</strong>  | True  | False |
+  | | | |
   | <strong>False</strong> | False | False |
 
 </details>
