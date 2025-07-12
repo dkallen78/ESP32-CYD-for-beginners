@@ -4,7 +4,7 @@ Our moving "Hello World" text box is pretty nifty, but if we wanted to change an
 
 ## Variables are your friends
 
-Let's start by doing something about our two `delay()` function calls that's been bothering. If we wanted to change our delay we'd have to do it twice, and that's more chances to make an unforced error than we want to take. 
+Let's start by doing something about our two `delay()` function calls that's been bothering me. If we wanted to change our delay we'd have to do it twice, and that's more chances to make an unforced error than we want to take. 
 
 Start by making a variable inside `loop()`, calling it something descriptive, and giving it a value.
 
