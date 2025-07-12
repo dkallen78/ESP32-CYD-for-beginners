@@ -216,7 +216,7 @@ That just leaves the problem of the `fillRect()` methods that weren't erasing co
 lcd.fillRect(90, i, 140, 1, TFT_BLUE);
 ```
 
-We need to replace those numbers <var>`90`</var> and <var>`140`</var> with values from our new class. Recall that <var>`90`</var> here represents the x value represents the top-left corner of the rectangle to be drawn (the center offset), and <var>`140`</var> represents the width of the rectangle.
+We need to replace those numbers <var>`90`</var> and <var>`140`</var> with values from our new class. Recall that <var>`90`</var> here represents the x value of the top-left corner of the rectangle to be drawn (the center offset), and <var>`140`</var> represents the width of the rectangle.
 
 Plug in the corresponding methods from our class and this should be done.
 
