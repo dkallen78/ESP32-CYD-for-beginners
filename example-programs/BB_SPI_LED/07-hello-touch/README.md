@@ -95,6 +95,7 @@ TOUCHINFO ti;
   ```
 
   In this case, either one or the other of the two conditions might run, depending on the conditions, but never both. You can put an else at the end of the chain if you need to make sure your program does something, but you might not always need to do something. And you can chain together as many `else if`s as you want after your `if`, but you can only have one `else` and it needs to be at the end.
+  
 ---
 </details>
 
