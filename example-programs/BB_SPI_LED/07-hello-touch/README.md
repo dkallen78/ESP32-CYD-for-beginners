@@ -27,13 +27,13 @@ These four lines are essentially creating four named constants with number value
 
 * `TOUCH_CS` is the **C**hip **S**elect pin. When the CYD wants to talk to the touch interface, it sends a signal to this pin so the touch interface knows to listen. When it's done talking, it drops the signal.
 
-```c++
+```C++
 lcd.rtInit(TOUCH_MOSI, TOUCH_MISO, TOUCH_CLK, TOUCH_CS);
 ```
 
 This initializes the resistive touch display using the pin values that were previously defined. 
 
-```c++
+```C++
 TOUCHINFO ti;
 ```
 
@@ -58,7 +58,7 @@ TOUCHINFO ti;
   
   or, in C++ syntax
 
-  ```c++
+  ```C++
   if (condition) {
     do_something();
   }
@@ -71,7 +71,7 @@ TOUCHINFO ti;
   * or <i>else</i>
     * do something else
 
-  ```c++
+  ```C++
   if (condition) {
     do_something();
   } else {
@@ -86,7 +86,7 @@ TOUCHINFO ti;
   * or <i>else, if</i> another condition is met
     * do something else
   
-  ```c++
+  ```C++
   if (condition) {
     do_something();
   } else if (condition2) {
@@ -96,7 +96,7 @@ TOUCHINFO ti;
 
   In this case, either one or the other of the two conditions might run, depending on the conditions, but never both. You can put an else at the end of the chain if you need to make sure your program does something, but you might not always need to do something. And you can chain together as many `else if`s as you want after your `if`, but you can only have one `else` and it needs to be at the end.
 
-  ```c++
+  ```C++
   if (condition) {
     do_something();
   } else if (condition2) {
@@ -109,7 +109,7 @@ TOUCHINFO ti;
 ---
 </details>
 
-```c++
+```C++
 lcd.rtReadTouch(&ti);
 ```
 
@@ -127,6 +127,6 @@ Although this program works, there is one glaring flaw in it I want to fix: it h
 
 Now that we know what we want to do, we have to figure out how to do it 😅. The simplest way to do this is to create a variable that we can turn "on" or "off" depending on whether our text is on screen. You can call your varaiable whatever you want, but I'm going to make a boolean variable called <var>`onScreen`</var> and set its default value to <var>`false`</var>.
 
-```c++
+```C++
 bool onScreen = false;
 ```
