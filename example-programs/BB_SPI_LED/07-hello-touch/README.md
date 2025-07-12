@@ -145,7 +145,7 @@ In other words, the first part of our if statement has two conditions that must 
 Let's put those into our if statement.
 
 <details>
-  <summary>Logical operators sidequest!</summary>
+  <summary><h3>Logical operators sidequest!</h3></summary>
 
   ---
   
@@ -227,7 +227,7 @@ First off, we need to set <var>`onScreen`</var> back to <var>`false`</var> after
 Our text only appears once, but we're getting some wicked flicker. See if you can figure out why that's happening.
 
 <details>
-  <summary>Show reason ...</summary>
+  <summary><h3>Show reason ...</h3></summary>
 
   ---
 
