@@ -148,5 +148,26 @@ Let's put those into our if statement.
   <summary>Logical operators sidequest!</summary>
 
   ---
-  Logical operators are essentially the conjunctions of programming. 
+  
+  To understand logical operators we have to start with the concept of yes or no, true, or false, on or off, and 1 and 0. It's common in programming to have to distinguish between two diametric values like this and make an action based on whether it's one or the other. This branch in logic is called a conditional, and so far, we've looked at conditionals in for loops
+
+  ```C++
+  for (int i = 0; condition; i++)
+  ```
+
+  where the conditional establishes under what conditions the for loop will continue, and in if statements
+
+  ```C++
+  if (condition)
+  ```
+
+  where the conditional establishes under what conditions a special block of code will execute. 
+  
+  Logical operators set conditions to resolve truth or falsehood when more than one conditional is present
+
+  | AND   | True  | False |
+  |-------|-------|-------|
+  | True  | True  | False |
+  | False | False | False |
+
 </details>
