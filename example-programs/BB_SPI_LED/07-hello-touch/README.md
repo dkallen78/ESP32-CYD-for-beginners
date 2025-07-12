@@ -165,7 +165,7 @@ Let's put those into our if statement.
   
   Logical operators set conditions to resolve truth or falsehood when more than one conditional is present
 
-  | AND   | True  | False |
+  | <strong>AND   | True  | False</strong> |
   |-------|-------|-------|
   | True  | True  | False |
   | False | False | False |
