@@ -131,7 +131,7 @@ Now that we know what we want to do, we have to figure out how to do it 😅. Th
 bool onScreen = false;
 ```
 
-Now, whenever we print our text to the display, we can change the value of <var>`onScreen`</var> to <var>`true`</var> and after we run `fillScreen()`, we change it back to <var>`false`</var>. Simple, right?
+Put that in the global namespace for now, between `loop()` and `setup()`. Now, whenever we print our text to the display, we can change the value of <var>`onScreen`</var> to <var>`true`</var> and after we run `fillScreen()`, we change it back to <var>`false`</var>. Simple, right?
 
 In order to make this magic work, we need to do one more thing: update our if conditions. Let's think about the behavior we want in the terms of an if statement. 
 
@@ -194,5 +194,62 @@ Let's put those into our if statement.
   | <strong>!True</strong>  | False |
   | <strong>!False</strong> | True  |
 
+  > [!NOTE]
+  > Logical operators have an order of operations, so if you're using more than two in a statement be aware that ! comes before && which comes before ||.
+
+  ---
 
 </details>
+
+Our first if block (the one that prints "Hello World") needs to run when we touch the screen (`lcd.rtReadTouch(&ti)`) AND when there's NOThing onscreen (<var>`!onScreen`</var>). Plug those two conditions into the first if block.
+
+```C++
+if (lcd.rtReadTouch(&ti) && !onScreen) {
+  lcd.println("Hello World");
+}
+```
+
+Don't forget, that once "Hello World" has printed, we need to update the value of <var>`onScreen`</var>
+
+```C++
+if (lcd.rtReadTouch(&ti) && !onScreen) {
+  lcd.println("Hello World");
+  onScreen = true;
+}
+```
+
+If you compile and upload this program, you'll see it will work, but only one time. We've set <var>`onScreen`</var> to <var>`true`</var> but we haven't made a way to change its value back to <var>`false`</var>. Let's flesh out the second half of this problem.
+
+First off, we need to set <var>`onScreen`</var> back to <var>`false`</var> after we erase our text. If we compile and upload now, we almost get what what we want.
+
+<img src="../assets/img/07/hello-touch-on-screen-flicker.gif" alt="CYD Hello World touch with wicked flicker">
+
+Our text only appears once, but we're getting some wicked flicker. See if you can figure out why that's happening.
+
+<details>
+  <summary>Show reason ...</summary>
+
+  ---
+
+  Because we're using an if ... else statement, one or the other block is always going to run. In this case, our first block only runs if `rtReadTouch()` and <var>`!onScreen`</var> resolve as <var>`true`</var>. That means that once we print "Hello World" and change <var>`onScreen`</var>'s value, that first block won't run. 
+  
+  But because we used an else statement, the second block will always run if the first one doesn't, erasing the screen and flipping <var>`onScreen`</var>'s value. So, as long as we're touching the screen, both blocks will run, one after the other, over and over, causing our wicked flicker.
+
+  ---
+  
+</details>
+
+Let's fix that flicker.
+
+Right now, the second block of our if statement is gatekept with just an else, which means that it will run if either `rtReadTouch()` returns <var>`false`</var> or <var>`onScreen`</var> returns <var>`true`</var>. But the behavior we want is that the screen will clear only if the screen isn't being touched (`!lcd.rtReadTouch()`) AND there's something to erase (<var>`onScreen`</var>). To achieve that, we need to use an else if instead of an else.
+
+```C++
+else if (!lcd.rtReadTouch(&ti) && onScreen) {
+  lcd.fillScreen(TFT_BLACK);
+  onScreen = false;
+}
+```
+
+<img src="../assets/img/07/cyd-hello-touch-state.gif" alt="CYD Hello Touch with state management">
+
+That looks pretty good! Let's take this touch thing [one step farther](../07-hello-touch/) by making use of the x and y values of our touch and making some buttons!
