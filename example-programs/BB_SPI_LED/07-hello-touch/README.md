@@ -45,7 +45,7 @@ TOUCHINFO ti;
 
 <var>`ti`</var> is the name given to this instance of the `TOUCHINFO` structure. It's going to be where our touch input data are stored.
 
-<details style="background-color:green">
+<details>
   <summary><h3>If statement sidequest!</h3></summary>
 
   ---
@@ -130,3 +130,23 @@ Now that we know what we want to do, we have to figure out how to do it 😅. Th
 ```C++
 bool onScreen = false;
 ```
+
+Now, whenever we print our text to the display, we can change the value of <var>`onScreen`</var> to <var>`true`</var> and after we run `fillScreen()`, we change it back to <var>`false`</var>. Simple, right?
+
+In order to make this magic work, we need to do one more thing: update our if conditions. Let's think about the behavior we want in the terms of an if statement. 
+
+> If the screen is touched (`rtReadTouch()`), print "Hello World" unless it's already onscreen (`onScreen = false`). 
+
+In other words, the first part of our if statement has two conditions that must be met in order to run:
+
+* `rtReadTouch()` must return <var>`true`</var> or <var>`1`</var>
+* <var>`onScreen`</var> must be false
+
+Let's put those into our if statement.
+
+<details>
+  <summary>Logical operators sidequest!</summary>
+
+  ---
+  Logical operators are essentially the conjunctions of programming. 
+</details>
