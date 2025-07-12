@@ -192,5 +192,6 @@ Let's put those into our if statement.
     | <strong><h3>NOT</h3>   | True  | False</strong> |
   |-------|-------|-------|
   |   | False  | True |
+  | | | |
 
 </details>
