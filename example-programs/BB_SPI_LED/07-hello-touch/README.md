@@ -189,9 +189,10 @@ Let's put those into our if statement.
 
   ! resolves a condition as its opposite.
 
-    | <strong><h3>NOT</h3>   | True  | False</strong> |
-  |-------|-------|-------|
-  |   | False  | True |
-  | | | |
+  | NOT    |       |
+|--------|-------|
+| !True  | False |
+| !False | True  |
+
 
 </details>
