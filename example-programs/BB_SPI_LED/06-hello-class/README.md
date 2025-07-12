@@ -6,7 +6,7 @@ When last we saw our plucky program, we had run into a conundrum. The plan was t
 
 A class is kind of like creating our own type of variable with some extra features bundled in. A more precise way of saying that, is that a class is a way for us to make our own data structures. Here's the basic form a class has to take:
 
-```c++
+```C++
 class ClassName {
   public:
     int someVariable;
@@ -15,13 +15,13 @@ class ClassName {
 
 Then, when you want to make use of your fancy new data structure, you create an instance of it, just like you would when declaring a variable.
 
-```c++
+```C++
 ClassName myObject;
 ```
 
 And that variable on the inside? That's technically called an attribute and you can access it like so:
 
-```c++
+```C++
 myObject.someVariable
 ```
 
@@ -34,7 +34,7 @@ First, our new class needs a name. I'm going with `TextBox`, but you do you.
 > [!NOTE]
 > Class names in C++ are traditionally written with the initial letter capitalized.
 
-```c++
+```C++
 class TextBox {
   public:
     ...
@@ -43,7 +43,7 @@ class TextBox {
 
 Sweet. Now we need to build in all the variables we want it to have. Part of the reason we're doing this is because our class will be able to carry all of our text box data in a much neater package than otherwise possible (but there will be some other benefits as well). The two most important values are our `String` of text and the `charWidth` because all of our other values are derived from those two.
 
-```c++
+```C++
 class TextBox {
   public:
     String text;
@@ -55,7 +55,7 @@ This is enough to get us started and we can start to see some benefit if we drop
 
 To use it, we'll need to create an instance of it and define its attributes.
 
-```c++
+```C++
 TextBox textBox;
 textBox.text = text;
 textBox.charWidth = 12;
@@ -63,7 +63,7 @@ textBox.charWidth = 12;
 
 Now, instead of passing the `String` variable with our text to the `drawTextBox()` function, we can pass the <var>`textBox`</var> object we just created.
 
-```c++
+```C++
 void drawTextBox(int yPos, TextBox textBox) {
   int textWidth = textBox.text.length() * textBox.charWidth;
   int textHeight = lcd.fontHeight();
@@ -80,7 +80,7 @@ Because all of our other values are directly derived from <var>`text`</var> and 
 
 Methods are defined in pretty much the same way a function is, only we do it inside our class.
 
-```c++
+```C++
 class TextBox {
   public:
     void boxMethod() {
@@ -91,13 +91,13 @@ class TextBox {
 
 Then you can use the method just like we've been using other methods.
 
-```c++
+```C++
 textBox.boxMethod();
 ```
 
 Let's look back at the program we made in the last tutorial, [greetings-planet.ino](../05-hello-functions/greetings-planet.ino). In particular, look at the last three lines of the `drawTextBox()` function.
 
-```c++
+```C++
 lcd.fillRect(boxXoffset, yPos, boxWidth, boxHeight, TFT_YELLOW);
 lcd.setCursor(textXoffset, yPos + 4);
 lcd.println(text);
@@ -121,7 +121,7 @@ Let's start with the first one, <var>`boxXoffset`</var>. We need to figure out t
 2. Does our method require a parameter — outside information — to do its job?
 3. What does our method need to do in order to do what we want it to?
 
-```c++
+```C++
 class TextBox {
   public:
     ? boxXoffset(?) {
@@ -136,7 +136,7 @@ class TextBox {
 
 Here's what that looks like:
 
-```c++
+```C++
 int boxXoffset() {
   return 160 - (((text.length() * charWidth) + 8) / 2);
 }
@@ -148,7 +148,7 @@ This is a good start, lets put our other methods together and see if any other o
 
 Follow the same method we just used to make `boxXofset()` to make `boxWidth()`. We know we want it to return an integer value, we know we don't need any parameters since the value it returns is based on <var>`text.length()`</var> and <var>`charWidth`</var>, and we know the math we need to do because we already did it.
 
-```c++
+```C++
 int boxWidth() {
   return (text.length() * charWidth) + 8;
 }
@@ -156,7 +156,7 @@ int boxWidth() {
 
 Wait a second ... A large chunk of the code in both methods is the same. That's because our original <var>`boxXoffset`</var> variable was based on the value of <var>`boxWidth`</var>. We can replace the code `((text.length() * charWidth) + 8)` in the `boxXoffset()` method with `boxWidth()`:
 
-```c++
+```C++
 int boxXoffset() {
   return 160 - (boxWidth() / 2);
 }
@@ -164,7 +164,7 @@ int boxXoffset() {
 
 `boxHeight` is pretty straightforward since it's just 8 + `lcd.fontHeight()`
 
-```c++
+```C++
 int boxHeight() {
   return lcd.fontHeight() + 8;
 }
@@ -172,7 +172,7 @@ int boxHeight() {
 
 Let's cap things off with making `textXoffset()`, which should be pretty close to `boxXoffset()`.
 
-```c++
+```C++
 int textXoffset() {
   return 160 - ((text.length() * charWidth) / 2);
 }
@@ -180,7 +180,7 @@ int textXoffset() {
 
 That should do it for the initial assembly of our new class. It should look something like this:
 
-```c++
+```C++
 class TextBox {
   public:
     String text;
@@ -202,7 +202,7 @@ class TextBox {
 
 And our `drawTextBox()` function can be drastically simplified: 
 
-```c++
+```C++
 void drawTextBox(int yPos, TextBox textBox) {
   lcd.fillRect(textBox.boxXoffset(), yPos, textBox.boxWidth(), textBox.boxHeight(), TFT_YELLOW);
   lcd.setCursor(textBox.textXoffset(), yPos + 4);
@@ -212,7 +212,7 @@ void drawTextBox(int yPos, TextBox textBox) {
 
 That just leaves the problem of the `fillRect()` methods that weren't erasing correctly.
 
-```c++
+```C++
 lcd.fillRect(90, i, 140, 1, TFT_BLUE);
 ```
 
@@ -220,13 +220,13 @@ We need to replace those numbers <var>`90`</var> and <var>`140`</var> with value
 
 Plug in the corresponding methods from our class and this should be done.
 
-```c++
+```C++
 lcd.fillRect(textBox.boxXoffset(), i, textBox.boxWidth(), 1, TFT_BLUE);
 ```
 
 and 
 
-```c++
+```C++
 lcd.fillRect(textBox.boxXoffset(), i + 24, textBox.boxWidth(), 1, TFT_BLUE);
 ```
 
