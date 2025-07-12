@@ -49,6 +49,50 @@ TOUCHINFO ti;
   <summary>If statement sidequest!</summary>
   <strong>If</strong> you already know how if statements work, <strong>then</strong> you can skip this bit, but if you haven't seen them before, you may want to take a look.
 
+  If statements are what's known as conditionals in computer science lingo. The easiest form this takes looks like this
+  
+  * <i>If</i> a certain condition is met
+    * do a thing
+  
+  or, in C++ syntax
+
+  ```c++
+  if (condition) {
+    do_something();
+  }
+  ```
+
+  The above `do_something()` function only runs if our condition is true. Things can get more sophisticated with the inclusion of `else`
+
+  * <i>If</i> a certain condition is met
+    * do a thing
+  * or <i>else</i>
+    * do something else
+
+  ```c++
+  if (condition) {
+    do_something();
+  } else {
+    do_something_else();
+  }
+  ```
+
+  In the first if statement, `do_something()` might or might not run. If the <var>`condition`</var> is false, the program will pass over it like a tiny speed bump. In the second one, either `do_something()` or `do_something_else()` is going to run no matter what, but never both. But, we can complicate things still further by adding the `else if`
+
+  * <i>If</i> a certain condition is met
+    * do a thing
+  * or <i>else, if</i> another condition is met
+    * do something else
+  
+  ```c++
+  if (condition) {
+    do_something();
+  } else if (condition2) {
+    do_something_else();
+  }
+  ```
+
+  In this case, either one or the other of the two conditions might run, depending on the conditions, but never both. You can put an else at the end of the chain if you need to make sure your program does something, but you might not always need to do something. And you can chain together as many `else if`s as you want after your `if`, but you can only have one `else` and it needs to be at the end.
 
 </details>
 
