@@ -172,4 +172,4 @@ We've got a bug. Based on what's on the screen, can you look at the code and fig
 
 The trivial way to fix would seem to be to move the `delay()` function and `fillRect()` method still in the for loops into our `drawTextBox()` function, then replace `90` with <var>`boxXoffset`</var> and `140` with <var>`boxWidth`</var>, but that still leaves the issue of whether to erase from the top or bottom, and it seriously violates the principle of Separation of Concerns (our functions should only be doing one thing).
 
-We could calculate all of our variables in the `loop()` function, but then we'd have to pass six arguments into `drawTextBox()` and that seems unwieldy, so we're going to need [approach this from a different angle](../06-hello-class/README.md).
+We could calculate all of our variables in the `loop()` function, but then we'd have to pass six arguments into `drawTextBox()` and that seems unwieldy, so we're going to need to [approach this from a different angle](../06-hello-class/README.md).
