@@ -167,8 +167,105 @@ Hopefully what you put together looks something like this:
 
 <img src="../assets/img/08/cyd-hello-buttons-1.gif" alt="CYD Hello Buttons program finished">
 
-Hopefully you were more cognizant than me and remembered to change the <var>`onScreen`</var> variable every time the button was pushed ...
+And opefully you were more cognizant than me and remembered to change the <var>`onScreen`</var> variable every time the button was pushed ...
 
-## Cleaning up
+## Structuring our data
 
-It's time to clean up those gnarly if statements. They work but they're ugly. 
+It's time to clean up those gnarly if statements. They work but they're ugly. Specifically, I want to clean up all this:
+
+```C++
+(ti.x[0] >= 4 && ti.x[0] <= 156) && (ti.y[0] >= 4 && ti.y[0] <= 88)
+```
+
+I want a function or method to take our x and y values, determine if it was a touch, and return true or false. If we do a stand-alone function, we'll have to pass six values in as arguments, and that's just as ugly and unweildy in a different way. Instead, let's create a data structure for our buttons so that it stores its size internally and we can give it a method to check if two coordinates are within its bounds.
+
+[Last time we made a data structure of our own](../06-hello-class/) we used a class. This time we're going to do something similar but we're going to use a struct. Structs and classes are very similar with the most significant difference being access to some of its internal values. When to use one or the other is beyond the scope of this tutorial; I just want to show you a different tool.
+
+Here's what structs look like
+
+```C++
+struct StructName {
+  int structVariable;
+  void structMethod() {
+
+  }
+};
+```
+
+To achieve what we want, our button struct will need to have four coordinate values and a method to check for clicks, but let's start with just a name.
+
+```C++
+struct Button {
+  ...
+};
+```
+
+Next, make the attributes for our button: the coordinates for the top-left corner and the bottom-right corner.
+
+```C++
+struct Button {
+  int x1, y1, x2, y2;
+};
+```
+
+We need a name for our method, I'm going with something simple like `click()` but this is entirely a personal choice.
+
+```C++
+struct Button {
+  int x1, y1, x2, y2;
+  bool click(int x, int, y) {
+    ...
+  }
+};
+```
+
+And, because I don't want to have to input the button dimensions line by line, I'm going to give this struct a constructor.
+
+```C++
+struct Button {
+  int x1, y1, x2, y2;
+  Button(int xa, int ya, int xb, int yb) {
+    x1 = xa;
+    y1 = ya;
+    x2 = xb;
+    y2 = yb;
+  }
+  bool click(int x, int, y) {
+    ...
+  }
+};
+```
+
+Finally, let's lift the boolean logic from one of our if statements, and drop it into our `click()` method, swapping out the literal values for our attributes.
+
+```C++
+struct Button {
+  int x1, y1, x2, y2;
+  Button(int xa, int ya, int xb, int yb) {
+    x1 = xa;
+    y1 = ya;
+    x2 = xb;
+    y2 = yb;
+  }
+  bool click(int x, int, y) {
+    return (x >= x1 && x <= x2) && (y >= y1 && y <= y2);
+  }
+};
+```
+
+Drop that bad boy somewhere in the global namespace and let's get to using it. As for the two instance of our new struct, we can either put them in the global scope or we can put them in our `loop()` function. This might not be the best solution, but I'm going to drop them into the global scope just for simplicity's sake.
+
+```C++
+Button show(4, 4, 156, 88);
+Button hide(164, 4, 316, 88);
+```
+
+Now you can use them in your if statements!
+
+```C++
+if (show.click(ti.x[0], ti.y[0]) && !onScreen) {
+  ...
+} else if (hide.click(ti.x[0], ti.y[0]) && onScreen) {
+  ...
+}
+```
