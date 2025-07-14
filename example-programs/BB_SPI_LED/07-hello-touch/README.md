@@ -252,4 +252,4 @@ else if (!lcd.rtReadTouch(&ti) && onScreen) {
 
 <img src="../assets/img/07/cyd-hello-touch-state.gif" alt="CYD Hello Touch with state management">
 
-That looks pretty good! Let's take this touch thing [one step farther](../07-hello-touch/) by making use of the x and y values of our touch and making some buttons!
+That looks pretty good! Let's take this touch thing [one step further](../07-hello-touch/) by making use of the x and y values of our touch and making some buttons!
