@@ -163,11 +163,11 @@ Now that our if statements are straightened, let's put the last bits of logic in
 
 Likewise, put in the logic to draw over/erase our text. Keep in mind that you don't want to use `fillScreen()` since that will draw over our buttons as well. You just want to draw a rectangle large enough to overwrite the text. 
 
-Hopefully what you put together looks something like this:
+Hopefully what you put together looks [something like this](hello-buttons.ino):
 
 <img src="../assets/img/08/cyd-hello-buttons-1.gif" alt="CYD Hello Buttons program finished">
 
-And opefully you were more cognizant than me and remembered to change the <var>`onScreen`</var> variable every time the button was pushed ...
+And hopefully you were more cognizant than me and remembered to change the <var>`onScreen`</var> variable every time the button was pushed ...
 
 ## Structuring our data
 
@@ -253,7 +253,7 @@ struct Button {
 };
 ```
 
-Drop that bad boy somewhere in the global namespace and let's get to using it. As for the two instance of our new struct, we can either put them in the global scope or we can put them in our `loop()` function. This might not be the best solution, but I'm going to drop them into the global scope just for simplicity's sake.
+Drop that bad boy somewhere in the global namespace and let's get to using it. As for the two instances of our new struct, we can either put them in the global scope or we can put them in our `loop()` function. This might not be the best solution, but I'm going to drop them into the global scope just for simplicity's sake.
 
 ```C++
 Button show(4, 4, 156, 88);
@@ -269,3 +269,17 @@ if (show.click(ti.x[0], ti.y[0]) && !onScreen) {
   ...
 }
 ```
+
+I think that's pretty cool. You can take a [look at how I did it](hello-buttons-struct.ino) if you got lost at any point.
+
+Here's some things for you to try on your own:
+
+* Restructure your program so that the <var>`show`</var> and <var>`hide`</var> Buttons are out of the global namespace (you can move <var>`onScreen`</var> to the `loop()` namespace as well).
+  * You'll need a while loop, so [look up how to use those](https://docs.arduino.cc/language-reference/en/structure/control-structure/while/).
+  * You'll also have to put some of your actions from `setup()` into `loop()`.
+* We want to be able to draw the button anywhere, so refactor the constructor to take width, height, and color as arguments, and make a method to draw the button that takes the coordinates of the top-left corner as arguments.
+* Make another method to draw the button text centered in the button. One caveat with this challenge is that you'll either have to specify the width of the characters in the font, or write a function to figure it out based on the current font (the value of which you'll need to store in a variable because the BB_SPI_LCD library doesn't have methods for the current font or the character width).
+
+When I make these changes, I implement one change at a time to make tracking down bugs and typos easier. I suggest you do the same. Having said that, I probably had to compile my final version at least 10 times before I got it right, so don't let bugs get you down, it's just part of the process.
+
+[Take a look](hello-buttons-super-struct.ino) at how I made all these changes. I even left comments explaining some of my thought processes ;)
