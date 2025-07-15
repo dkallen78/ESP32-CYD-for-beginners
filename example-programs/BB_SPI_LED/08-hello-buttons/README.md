@@ -272,6 +272,8 @@ if (show.click(ti.x[0], ti.y[0]) && !onScreen) {
 
 I think that's pretty cool. You can take a [look at how I did it](hello-buttons-struct.ino) if you got lost at any point.
 
+## Independent study
+
 Here's some things for you to try on your own:
 
 * Restructure your program so that the <var>`show`</var> and <var>`hide`</var> Buttons are out of the global namespace (you can move <var>`onScreen`</var> to the `loop()` namespace as well).
