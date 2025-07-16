@@ -110,7 +110,7 @@ Remember, we call this function twice, once in each for loop.
 
 Okay, now that we have our `String` object, how will it help us figure out how long our string is? With the `length()` method. `text.length()` returns the number of characters in our string as an integer value. In our current case, "Hello World" has 11 characters, so that's what `text.length()` will return. Hold on to that knowledge and lets move on to our next problem to solve, the width of the characters in our font.
 
-The BB_SPI_LCD library has a method to return the height of the current active font `fontHeight()`, but not its width. There are some clever ways we could make our own function to do so, but let's keep it simple and just declare a variable to keep track of it for now. Put it in `drawTextBox()` for now (we may move it later).
+The BB_SPI_LCD library has a method to return the height of the current active font `fontHeight()`, but not the width of its characters. There are some clever ways we could make our own function to do so, but let's keep it simple and just declare a variable to keep track of it. Put it in `drawTextBox()` for now (we may move it later).
 
 ```c++
 int charWidth = 12;

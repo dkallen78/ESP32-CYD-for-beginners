@@ -285,3 +285,5 @@ Here's some things for you to try on your own:
 When I make these changes, I implement one change at a time to make tracking down bugs and typos easier. I suggest you do the same. Having said that, I probably had to compile my final version at least 10 times before I got it right, so don't let bugs get you down, it's just part of the process.
 
 [Take a look](hello-buttons-super-struct.ino) at how I made all these changes. I even left comments explaining some of my thought processes ;)
+
+[Next up](../09-hello-fonts/), let's dig into some of this library's font functionality.
