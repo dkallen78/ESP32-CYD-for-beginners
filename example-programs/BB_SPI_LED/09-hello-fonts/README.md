@@ -129,15 +129,15 @@ void getOffset(char *text, int *x, int *y) {
 
 Okay, what's up with those asterisks? Those are called dereference operators and there's two things going on here. First, let's talk about <var>`*text`</var>. Because `getTextBounds()` is expecting an array of characters, that's what we have to pass to our `getOffset()` function. But, when you pass an array as an argument in C++, the function/method doesn't get the array and all its data, what it gets is a pointer to the memory address of the first element. The dereference operator tells C++ that, no, actually we want the data at that address, not the address itself.
 
-The dereference operators in front of <var>`x`</var> and <var>`y`</var> are doing the same thing. The plan with this function is to pass in those two values by reference which is a simplified way of saying that we're going to share the memory address of those variables rather than their data. Because we've passed in the addresses of our variables, if we want to use their data, we need to use the dereference operator to access them.
+The dereference operators in front of <var>`x`</var> and <var>`y`</var> are doing the same thing. The plan with this function is to pass in those two values by reference, which is a simplified way of saying that we're going to share the memory addresses of those variables rather than their data. Because we've passed in the addresses of our variables, if we want to use their data, we need to use the dereference operator to access them.
 
 As always, I encourage you to try this on your own before following along with me. Still here? Drop that function in the global scope and let's start putting some logic in it.
 
-Recall that we need to do X things to find where to place the cursor for our text to be drawn centered.
+Recall that we need to do three things to find where to place the cursor for our text to be drawn centered.
 
 1. We need to find the center coordinates of the screen.
 2. We need to find the dimensions of our rendered text. 
-3. We need to offset half the width and height of that text from the center.
+3. We need to offset half the width and height of that text from the center of the display.
    * Keep in mind that our fancy typeface draws from the bottom-left corner of the cursor.
 
 To accomplish our first task we just need to find half the value of whatever `height()` and `width()` return.
@@ -194,3 +194,5 @@ If you've put everything in the right place, you text should show up in the cent
 And just to show you that the typeface is transparent
 
 <img src="../assets/img/09/cyd-hello-fonts-centered-colors.jpg" alt="CYD Hello Fonts program showing typeface background transparency">
+
+This function to get the center offset for printed text is pretty cool, but there's one glaring problem with it: It will only give the correct values for GFX fonts, not the BB_SPI_LCD fonts. See if you can figure out what needs to be done to make this function work for both typefaces. [Take a look at the code](https://github.com/bitbank2/bb_spi_lcd/blob/b243e7421397ba31c6355bad0fd90131ab29508a/src/bb_spi_lcd.cpp#L8473) for the `getTextBounds()` method in the BB_SPI_LCD library to get a hint. Here's how I did it.
