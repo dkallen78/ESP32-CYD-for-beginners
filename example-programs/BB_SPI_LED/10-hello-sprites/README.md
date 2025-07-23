@@ -4,6 +4,8 @@ Okay, we're not going to make a video game (although you probably could if you w
 
 When we've made our programs up until now, we've created a single instance of the BB_SPI_LCD class. When we run the `begin()` method of that class, we're essentially hooking up that instance to the display so we can use it to draw letters and rectangles. But we can make multiple instances of this class to draw on invisible, virtual displays. Then, when we're ready to actually display what we've drawn on our virtual displays, we can run the `drawSprite()` method from our primary instance to display it. I know that sounds confusing, so let's look at [an example](hello-sprites.ino) so you can see what's happening.
 
+## `drawSprite()`
+
 ```C++
 #include <bb_spi_lcd.h>
 
@@ -88,6 +90,8 @@ And now, the version drawn with the sprite:
 
 The sprite has fewer artifacts and moves faster because the CYD doesn't have to compute what to draw, it just slaps it on the display from memory. Pretty cool. There's actually an even faster way to render sprites on the screen: `pushImage()`. 
 
+## `pushImage()`
+
 ```C++
 #include <bb_spi_lcd.h>
 
@@ -141,6 +145,8 @@ lcd.pushImage(0, 0, 131, 16, buffer);
 
 <img src="../assets/img/10/cyd-push-image-box-narrow.jpg" alt="CYD Hello Sprite program with pushImage() display area too narrow">
 
+## Sprite clipping
+
 Now let's go back to rendering with `drawSprite()` and position our sprite so it clips the left edge.
 
 ```C++
@@ -157,3 +163,76 @@ lcd.drawSprite(-60, 0, &virt);
 
 <img src="../assets/img/10/cyd-sprite-clipping-02.jpg" alt="CYD Hello Sprites program with sprite clipping the left edge">
 
+See if you can take this new tool and make a program where the textbox sprite slides across the screen, appearing from a random position offscreen and moving left to right until it's offscreen again, only to reappear from another random height. [Here's how I did it](hello-sprites-left-to-right.ino).
+
+## Sprite rotation
+
+There are a few caveats when it comes to rotating sprites and the process of doing it was not intuitive to me, so I'm going to try to break it down for you. The first thing to understand is that you will need a minimum of three instances of BB_SPI_LCD to rotate one sprite, here's what the method looks like:
+
+```C++
+source_sprite.rotateSprite(&destination_sprite, xCenter, yCenter, angle_of_roatation);
+```
+
+Once you've done this black magic, you can draw the `source_sprite` as we've been doing in the previous examples. 
+
+```C++
+lcd.drawSprite(0, 0, &destination_sprite);
+```
+
+But to get a better grip on it, let's look at a [flawed example](hello-sprites-rotate-flawed-01.ino).
+
+```C++
+// hello-sprites-rotate-flawed-01.ino
+#include <bb_spi_lcd.h>
+
+BB_SPI_LCD lcd, sprite1, sprite2;
+
+void setup() {
+  lcd.begin(DISPLAY_CYD);
+
+  sprite1.createVirtual(132, 16);
+  sprite1.setTextColor(TFT_RED);
+  sprite1.setFont(FONT_12x16);
+  sprite1.print("Hello World");
+
+  sprite2.createVirtual(132, 16);
+
+  sprite1.rotateSprite(&sprite2, 66, 8, 45);
+
+  lcd.drawSprite(0, 0, &sprite2);
+}
+
+void loop() {
+
+}
+```
+
+This program will compile and run, but you might not get the output you're expecting.
+
+<img src="../assets/img/10/cyd-hello-sprite-rotation-glitch-01.jpg" alt="CYD Hello Sprite program with flawed rotation">
+
+We've got a bit of the "o" in "Hello" and the first "W" in "World," but everything else has been cut off. What's happening? `rotateSprite()` is doing its job of rotating the contents of the <var>`sprite1`</var> virtual canvas/display, but it doesn't rotate the display itself. So, in this case, our "Hello World" sprite has been rotated 45 degrees clockwise, but that rotation has clipped most of the sprite out of the bounds of its virtual display. Tweak the size of the <var>`sprite2`</var> virtual display to look at this from another angle.
+
+```C++
+sprite2.createVirtual(132, 132);
+```
+
+This bigger destination sprite has enough room to render our twisted sprite, but if you run the program with this update, you'll still get a glitch.
+
+<img src="../assets/img/10/cyd-hello-sprite-rotation-glitch-02.jpg" alt="CYD Hello Sprite program with flawed rotation">
+
+Even though there's enough room to contain our rotated sprite, we get the same result. The problem is our source virtual display doesn't have enough room to contain the spun sprite. To solve our issue we need to make a display that's big enough to contain our sprite after spinning. Let's make it as tall as the text is wide.
+
+```C++
+sprite1.createVirtual(132, 132);
+```
+
+Likewise, our destination needs to be at least as large as the source.
+
+```C++
+sprite2.createVirtual(132, 132);
+```
+
+Position your cursor so that the text is virtually rendered in the center of <var>`sprite1`</var> (I'll let you crunch the numbers on that, it's good practice). Don't forget to adjust your coordinates for the center of rotation, and just so it looks pretty, render <var>`sprite2`</var> in the middle of the screen.
+
+<img src="../assets/img/10/cyd-hello-sprite-rotation-proper.jpg" alt="CYD Hello Sprite program with better rotation">
