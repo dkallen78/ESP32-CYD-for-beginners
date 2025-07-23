@@ -240,3 +240,13 @@ Position your cursor so that the text is virtually rendered in the center of <va
 Pretty cool. Of course you can make this look "better" with some strategically applied `fillScreen()` calls, but I'm kind of digging the glitchy aesthetic. You can probably guess what's next: make a perpetually spinning sprite! This one is pretty easy, you just need to move some things into a for loop and you're practically done. You can look at [my implementation](hello-sprites-spinning.ino) if you need some inspiration.
 
 <img src="../assets/img/10/cyd-hello-sprite-spinning.gif" alt="CYD Hello Sprite program with spinning sprite">
+
+## Sprite scaling
+
+So far, we've been using the `drawSprite()` method with just three arguments, the bare minimum, but we can pass it another one that will determine the scale of the sprite. In other words, we can make it bigger or we can make it smaller. Here's what it looks like:
+
+```C++
+drawSprite(xPos, yPos, &sprite, scale)
+```
+
+where <var>`xPos`</var> and <var>`yPos`</var> are both integers and <var>`scale`</var> is a float that will default to 1.0 if you omit a fourth argument.
