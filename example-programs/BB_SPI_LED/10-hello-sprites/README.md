@@ -115,13 +115,15 @@ void loop() {
 }
 ```
 
-So what's different here? First of all we have that unsigned 16-bit integer called <var>`buffer`</var> up there. That's going to hold the data for our sprite. Then, instead of `drawSprite()` we call `pushImage()`, which needs to know where to draw, how much space the image is going to occupy, and our array with the sprite data.
+So what's different here? First of all we have that unsigned 16-bit integer array called <var>`buffer`</var> up there. That's going to hold the data for our sprite. Then, instead of `drawSprite()` we call `pushImage()`, which needs to know where to draw, how much space the image is going to occupy, and our array with the sprite data.
 
 If you drop that method into the upgraded moving textbox program, you'll see it moves even faster than the one using `drawSprite()`.
 
 <img src="../assets/img/10/cyd-hello-sprite-push-image.gif" alt="CYD Hello Sprite program using the pushImage method">
 
 You're probably asking yourself, "If `pushImage()` is so good, why even use `drawSprite()`?" Put simply, `drawSprite()` can do more. `pushImage()` is more "primitive" and "closer to the silicon," which is how it gets its speed, but `drawSprite()` can do fancy stuff like scaling and clipping that `pushImage()` can't do.
+
+## Sprite clipping
 
 Let's look at clipping. Run that [previous sketch](hello-sprites-push.ino) again, but change the x value for where to push the image.
 
@@ -145,8 +147,6 @@ lcd.pushImage(0, 0, 131, 16, buffer);
 
 <img src="../assets/img/10/cyd-push-image-box-narrow.jpg" alt="CYD Hello Sprite program with pushImage() display area too narrow">
 
-## Sprite clipping
-
 Now let's go back to rendering with `drawSprite()` and position our sprite so it clips the left edge.
 
 ```C++
@@ -155,7 +155,7 @@ lcd.drawSprite(240, 0, &virt);
 
 <img src="../assets/img/10/cyd-sprite-clipping-01.jpg" alt="CYD Hello Sprites program with sprite clipping the right edge">
 
-We can also give draw a sprite with a negative offset.
+We can also draw a sprite with a negative offset.
 
 ```C++
 lcd.drawSprite(-60, 0, &virt);
@@ -221,7 +221,7 @@ This bigger destination sprite has enough room to render our twisted sprite, but
 
 <img src="../assets/img/10/cyd-hello-sprite-rotation-glitch-02.jpg" alt="CYD Hello Sprite program with flawed rotation">
 
-Even though there's enough room to contain our rotated sprite, we get the same result. The problem is our source virtual display doesn't have enough room to contain the spun sprite. To solve our issue we need to make a display that's big enough to contain our sprite after spinning. Let's make it as tall as the text is wide.
+Even though there's enough room to contain our rotated sprite, we get the same result. The problem is our source virtual display doesn't have enough room to contain the spun sprite. To solve our issue we need to make a source display that's big enough to contain our sprite after spinning. Let's make it as tall as the text is wide.
 
 ```C++
 sprite1.createVirtual(132, 132);
@@ -236,3 +236,7 @@ sprite2.createVirtual(132, 132);
 Position your cursor so that the text is virtually rendered in the center of <var>`sprite1`</var> (I'll let you crunch the numbers on that, it's good practice). Don't forget to adjust your coordinates for the center of rotation, and just so it looks pretty, render <var>`sprite2`</var> in the middle of the screen.
 
 <img src="../assets/img/10/cyd-hello-sprite-rotation-proper.jpg" alt="CYD Hello Sprite program with better rotation">
+
+Pretty cool. Of course you can make this look "better" with some strategically applied `fillScreen()` calls, but I'm kind of digging the glitchy aesthetic. You can probably guess what's next: make a perpetually spinning sprite! This one is pretty easy, you just need to move some things into a for loop and you're practically done. You can look at [my implementation](hello-sprites-spinning.ino) if you need some inspiration.
+
+<img src="../assets/img/10/cyd-hello-sprite-spinning.gif" alt="CYD Hello Sprite program with spinning sprite">
