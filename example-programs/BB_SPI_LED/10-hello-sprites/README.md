@@ -249,4 +249,29 @@ So far, we've been using the `drawSprite()` method with just three arguments, th
 drawSprite(xPos, yPos, &sprite, scale)
 ```
 
-where <var>`xPos`</var> and <var>`yPos`</var> are both integers and <var>`scale`</var> is a float that will default to 1.0 if you omit a fourth argument.
+where <var>`xPos`</var> and <var>`yPos`</var> are both integers and <var>`scale`</var> is a float that will default to 1.0 if it's omitted. Let's look at the `setup()` of a simple example.
+
+```C++
+lcd.begin(DISPLAY_CYD);
+lcd.fillScreen(TFT_BLACK);
+
+sprite.createVirtual(132, 16);
+sprite.setFont(FONT_12x16);
+sprite.setTextColor(TFT_RED);
+sprite.setCursor(0, 0);
+sprite.print("Hello World");
+
+lcd.drawSprite(0, 0, &sprite, 1.0f);
+
+lcd.drawSprite(0, 17, &sprite, 2.0f);
+```
+
+And here's the output:
+
+<img src="../assets/img/10/cyd-hello-sprite-scaling-01.jpg" alt="CYD Hello Sprite program with sprite scaling">
+
+Sprite scaling is pretty intuitive and easy to use, just be aware that there's no edge smoothing going on here, so any pixelation you have in your original sprite will be magnified in your scaled sprite.
+
+<img src="../assets/img/10/cyd-hello-sprite-scaling-pixels.jpg" alt="CYD Hello Sprite program with scaled up pixelated circle">
+
+Go make something fun with these sprite tools (or utilitarian, I won't judge) and share it with me, because I need inspiration just as much as the next guy!

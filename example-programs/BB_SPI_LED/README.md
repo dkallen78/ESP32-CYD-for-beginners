@@ -53,7 +53,7 @@ Fills the screen with a single 16-bit color.
 
 <var>`iColor`</var> an integer between 0 and 65,535 representing a color in the [RGB565 colorspace](https://rgbcolorpicker.com/565). Frequently given in the form of a four-digit hexadecimal number.
 
-<var>`iFlags`</var> I don't know the functional or useful difference between the two possible values for this argument ... yet.
+<var>`iFlags`</var> determines where to draw the data. DRAW_TO_RAM doesn't work on base CYD.
 
 ---
 ## Word Stuff
@@ -131,7 +131,7 @@ Draws a rectangle on the screen.
 
 <var>`iColor`</var> is the color of the rectangle to be drawn.
 
-<var>`iFlags`</var> I don't know what DRAW_TO_RAM is used for.
+<var>`iFlags`</var> determines where to draw the data. DRAW_TO_RAM doesn't work on base CYD.
 
 ---
 ###
