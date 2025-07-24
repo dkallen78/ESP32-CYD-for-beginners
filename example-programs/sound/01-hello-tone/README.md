@@ -32,10 +32,18 @@ First off, we're defining which pin is going to receive our sound output. You do
 tone(SOUND_PIN, 440);
 ```
 
-This is the function (which is part of Arduino's bag of goodies) that makes the sound. The sound it makes is a square wave with a duty cycle of 50%. In other words a square wave whose peaks and troughs are of equal duration/width. You can only play one `tone()` at a time, even if you're sending them to multiple pins. The lowest frequency value you can input is 32 Hz and the largest is 8 MHz (the average range of hearing is about 20 Hz to 20 kHz, so there's not many good reasons to crank it up to 8 MHz).
+This is the function (which is part of Arduino's bag of goodies) that makes the sound. The sound it makes is a square wave with a duty cycle of 50%. In other words a square wave whose peaks and troughs are of equal duration/width (50% high, 50% low). You can only play one `tone()` at a time, even if you're sending them to multiple pins. The lowest frequency value you can input is 32 Hz and the largest is 8 MHz (the average range of hearing is about 20 Hz to 20 kHz, so there's not many good reasons to crank it up to 8 MHz).
 
 We can also add another argument to the `tone()` function to control its duration in milliseconds.
 
 ```C++
 tone(SOUND_PIN, 440, 1000);
 ```
+
+You can also mix in delays to get an alarm clock vibe.
+
+```C++
+tone(SOUND_PIN, 440, 250);
+delay(500);
+```
+
