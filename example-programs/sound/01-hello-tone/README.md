@@ -24,6 +24,8 @@ Once you've got that compiled and running, turn it off because it's probably ann
 #define SOUND_PIN 26
 ```
 
+https://github.com/user-attachments/assets/fabc6c34-21de-4f0b-a7dc-f52a5e6f2e26
+
 First off, we're defining which pin is going to receive our sound output. You don't have to put it in a constant like this, but it's a good habit that will make your code more readable in the long run.
 
 ```C++
