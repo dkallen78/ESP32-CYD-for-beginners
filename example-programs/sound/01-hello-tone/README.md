@@ -39,3 +39,7 @@ We can also add another argument to the `tone()` function to control its duratio
 ```C++
 tone(SOUND_PIN, 440, 1000);
 ```
+
+https://github.com/user-attachments/assets/a6145ffb-e8f2-40ab-9010-16da18426246
+
+
