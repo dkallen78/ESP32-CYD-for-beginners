@@ -14,7 +14,7 @@ That looks much better but you have a new problem: The background color of your 
 
 <img src="../assets/img/02/cyd-blue-hello-world-bb.jpg" alt="CYD Hello World program with blue background">
 
-To fix this you could set pass <var>TFT_BLACK</var> to `fillScreen()` but what if you *really* wanted that blue background. Thankfully, BitBank already has a solution. Remember the `setTextColor()` method? You can pass a second argument to it to set the background color of the text. If you omit the second argument it will default to a black background but you can set it to whatever you want. Let's set our text background color to blue like our display fill and set our text to yellow so it pops a bit.
+To fix this you could pass <var>`TFT_BLACK`</var> to `fillScreen()` but what if you *really* wanted that blue background. Thankfully, BitBank already has a solution. Remember the `setTextColor()` method? You can pass a second argument to it to set the background color of the text. If you omit the second argument it will default to a black background but you can set it to whatever you want. Let's set our text background color to blue like our display fill and set our text to yellow so it pops a bit.
 
 ```c++
 lcd.setTextColor(TFT_YELLOW, TFT_BLUE);
