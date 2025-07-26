@@ -37,7 +37,7 @@ Let's get weird and instead of the text blinking in the same spot, let's have it
 
 We want our text to appear at a random position on the screen, so we will need to generate two random numbers: one for the x position and one for the y position. We also have to decide how big our range of random numbers will be. If we want the totality of our text and box to always be displayed we're going to have to plan accordingly (and do a little bit of math). 
 
-Let's start with our x value. We know that all together, our text and box are 140 pixels wide, so if we render them any closer than 140 pixels to the right edge of the screen, not all of it will be displayed. Knowing that, we can set our maximum to 320 (the screen width) - 140 (the box width), or 180. Our minum value is 0 so we only need one argument.
+Let's start with our x value. We know that all together, our text and box are 140 pixels wide, so if we render them any closer than 140 pixels from the right edge of the screen, not all of it will be displayed. Knowing that, we can set our maximum to 320 (the screen width) - 140 (the box width), or 180. Our minum value is 0 so we only need one argument.
 
 ```c++
 int x = random(180);
