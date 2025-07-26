@@ -17,7 +17,7 @@ lcd.fillScreen(TFT_BLUE);
 
 Put this line inside your `loop()` function.
 
-Next, we have to put the text back. You already have the text to do that. You don't need to reuse the `setTextColor()` or `setFont()` methods, but you will need to reuse the other methods.
+Next, we have to put the text back. You already have the code to do that. You don't need to reuse the `setTextColor()` or `setFont()` methods, but you will need to reuse the other methods.
 
 ```c++
 lcd.fillRect(90, 108, 140, 24, TFT_YELLOW);
