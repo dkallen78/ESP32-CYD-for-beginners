@@ -20,7 +20,7 @@ void loop() {
 
 https://github.com/user-attachments/assets/fabc6c34-21de-4f0b-a7dc-f52a5e6f2e26
 
-Once you've got that compiled and running, turn it off because it's probably annoying. Now that we're not being yelled at by our silicon, let's talk about what's happening.
+When you've got that compiled and running, turn it off, because it's probably annoying. Once you're not being yelled at by your silicon, let's talk about what's happening.
 
 ```C++
 #define SOUND_PIN 26
@@ -50,3 +50,38 @@ delay(500);
 https://github.com/user-attachments/assets/a6145ffb-e8f2-40ab-9010-16da18426246
 
 
+You can get a slightly different vibe by changing the frequency,
+
+```C++
+tone(SOUND_PIN, 440, 250);
+delay(500);
+tone(SOUND_PIN, 880, 250);
+delay(500);
+```
+
+As you're playing with all of this, you'll come to realize that `tone()` is a bit different. Part of what makes it harder to understand is that it's non-blocking, so the program continues to run while the tone is playing, that's why in the above code the delay is set to 500 ms, but the perceived delay is 250 ms. In other words, the tone is playing its alotted 250 ms while the delay is counting down. *But*, `tone()` doesn't always behave how you expect it to. Take a look at the following code I paraphrased from the [Arduino Language Reference](https://docs.arduino.cc/language-reference/en/functions/advanced-io/tone/):
+
+```C++
+tone(SOUND_PIN, 440, 1000);
+delay(1000);
+```
+
+This works fine on the CYD, albeit with a little tick as it loops around after the delay. But if you lower the duration and delay to 500 ms or lower, you'll only get sound briefly before it stops. Raise it to 501 ms and everything works as expected, but any lower and it won't. I don't know why but it's good info to have! Why do I know this? Because I wanted to alternate between 440 Hz and 880 Hz without a gap and that seemed like the best way to do it at first glance, but there is a better way.
+
+Remember, you can only have one `tone()` running at a time, but if you call the `tone()` function again on the same pin with a different frequency, it will begin playing the new frequency (if you have another pin with a speaker and you try to call `tone()` while it's already playing a tone on another pin, nothing will happen). So, if you want instantaneous change between two frequencies, omit the duration.
+
+```C++
+tone(SOUND_PIN, 440);
+delay(250);
+tone(SOUND_PIN, 880);
+delay(250);
+```
+
+This sounds less like an alarm clock and more like an urgent alarm. Tweak the values a bit and you can get something very similar to the old North American standard for a [ringing tone](https://en.wikipedia.org/wiki/Ringing_tone) (not the kind you put on your mobile phones).
+
+```C++
+tone(SOUND_PIN, 440);
+delay(50);
+tone(SOUND_PIN, 480);
+delay(50);
+```
