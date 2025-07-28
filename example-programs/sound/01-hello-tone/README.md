@@ -61,6 +61,8 @@ tone(SOUND_PIN, 880, 250);
 delay(500);
 ```
 
+https://github.com/user-attachments/assets/43a41717-db5e-4bf0-ae12-02fedc5d0f61
+
 As you're playing with all of this, you'll come to realize that `tone()` is a bit different. Part of what makes it harder to understand is that it's non-blocking, so the program continues to run while the tone is playing, that's why in the above code the delay is set to 500 ms, but the perceived delay is 250 ms. In other words, the tone is playing its alotted 250 ms while the delay is counting down. *But*, `tone()` doesn't always behave how you expect it to. Take a look at the following code I paraphrased from the [Arduino Language Reference](https://docs.arduino.cc/language-reference/en/functions/advanced-io/tone/):
 
 ```C++
@@ -79,6 +81,8 @@ tone(SOUND_PIN, 880);
 delay(250);
 ```
 
+https://github.com/user-attachments/assets/aead0e78-3a7e-4188-b0d3-059878e669fa
+
 This sounds less like an alarm clock and more like an urgent alarm. Tweak the values a bit and you can get something very similar to the old North American standard for a [ringing tone](https://en.wikipedia.org/wiki/Ringing_tone) (not the kind you put on your mobile phones).
 
 ```C++
@@ -87,6 +91,8 @@ delay(50);
 tone(SOUND_PIN, 480);
 delay(50);
 ```
+
+https://github.com/user-attachments/assets/c97d8963-84d9-4ed9-8e8e-26615ead4921
 
 Arpeggios feel less urgent to me and more like something from a video game.
 
@@ -98,6 +104,8 @@ delay(50);
 tone(SOUND_PIN, 392);
 delay(50);
 ```
+
+https://github.com/user-attachments/assets/446d9d52-ba3e-4787-a70c-a760c71dfc22
 
 Okay, this has been fun, but we've got a bit of problem on our hands. If we use `delay()` to control the duration of our notes, there's not much else we can do, because `delay()` pretty much blocks any logic from running. In other words, all we can do is make noise. If we wanted to push a button, crunch some numbers, or use the processor in any way, `delay()` would prevent us from doing so. Depending on what we want to do, we can approach this in a few different ways, but all of them rely on using the `millis()` function to keep track of time.
 
