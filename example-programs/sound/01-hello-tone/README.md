@@ -20,6 +20,9 @@ void loop() {
 }
 ```
 
+> [!NOTE]
+> Turn your volume down for these sound files. The `tone()` function does not have a way to control the volume of its output so everything is
+
 https://github.com/user-attachments/assets/fabc6c34-21de-4f0b-a7dc-f52a5e6f2e26
 
 When you've got that compiled and running, turn it off, because it's probably annoying. Once you're not being yelled at by your silicon, let's talk about what's happening.
@@ -42,7 +45,7 @@ We can also add another argument to the `tone()` function to control its duratio
 tone(SOUND_PIN, 440, 1000);
 ```
 
-You can also mix in delays to get an alarm clock vibe.
+You can also mix in delays and move things to the `loop()` function to get an alarm clock vibe.
 
 ```C++
 tone(SOUND_PIN, 440, 250);
