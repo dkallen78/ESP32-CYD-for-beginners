@@ -21,7 +21,7 @@ void loop() {
 ```
 
 > [!NOTE]
-> Turn your volume down for these sound files. The `tone()` function does not have a way to control the volume of its output so everything is
+> Turn your volume down for these sound files. The `tone()` function does not have a way to control the volume of its output so everything is aggressive.
 
 https://github.com/user-attachments/assets/fabc6c34-21de-4f0b-a7dc-f52a5e6f2e26
 
