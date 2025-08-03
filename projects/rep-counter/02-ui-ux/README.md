@@ -6,7 +6,6 @@ Before I tinker with the UI anymore, I want to figure out the scope of my progra
 
 **Feature List**
 
----
 * Add exercises
   * Text input
 
