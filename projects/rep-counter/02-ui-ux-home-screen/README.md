@@ -83,4 +83,41 @@ I know that BB_SPI_LCD has both rounded rectangles and line drawing of rectangle
 
 <img src="./img/gtg-home-screen-mock-up-03.jpg" alt="home screen mock-up with round rectangle around title">
 
-Okay, that actually looks pretty cool. I need to give it a little bit more space but I like that. Maybe I can add a method to add a rounded rectangle around the text into the Button struct ...
+Okay, that actually looks pretty cool. I need to give it a little bit more space but I like that. 
+
+<img src="./img/gtg-home-screen-mock-up-04.jpg" alt="home screen mock-up with better rounded rectangle">
+
+Alright, I'm on to something good here. I made a struct method to draw the box, and I can draw more than one to increase the thickness. Here's the metod I ended up writing:
+
+```C++
+void textBox(int pad, int xOff, int yOff, int rad, int color, BB_SPI_LCD *dest) {
+  int bw = tw + (pad * 2);
+  int bh = th + (pad * 2);
+  int bx = tx - pad + xOff;
+  int by = (font > -1) ? (ty - pad) : (ty - pad - th);
+  by += yOff;
+  dest->drawRoundRect(bx, by, bw, bh, rad, color);
+}
+```
+
+I could have put all that math inside my `drawRoundRect()` method call but putting it outside of the arguments makes it all easier for me to grasp if and when I come back later. I'm thinking of adding a thickness parameter then putting `drawRoundRect()` inside a for loop. But, more importantly, I need to make the bottom part of my home screen look better. I'm going to temporarily add some color to my different buttons so I can have a better idea of my proportions.
+
+<img src="./img/gtg-home-screen-mock-up-05.jpg" alt="home screen mock-up with zones highlighted">
+
+I think looking at it like this emphasizes just how much empty space there is, particularly around the mode name. I'm going to beef that up and see how it looks on all black.
+
+<img src="./img/gtg-home-screen-mock-up-06.jpg" alt="home screen mock-up with larger mode text">
+
+That's a lot better, but how does it hold up to longer text? 
+
+<img src="./img/gtg-home-screen-mock-up-07.jpg" alt="home screen mock-up with too-long text">
+
+It doesn't. What about if we do a line break?
+
+<img src="./img/gtg-home-screen-mock-up-08.jpg" alt="home screen mock-up with multi-line text">
+
+The issue is how I have the `text()` method implemented in my Button struct, so I either have to add that feature in, settle for a smaller font, or change the wording for that mode. I'm going to try the simplest solution first: change the wording.
+
+<img src="./img/gtg-home-screen-mock-up-09.jpg" alt="home screen mock-up with alternate wording">
+
+Honestly, that works for me.
