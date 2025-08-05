@@ -96,3 +96,26 @@ I think part of the problem is when I get back to `loop()` I'm redeclaring the s
 Nope, putting them in an if block takes them out of scope. And, after a bit of reading, each cycle of the loop destroys what was there before, so I'm not sure what the issue is here. I'm going to start by putting a counter into `loop()` and see if things are moving.
 
 Things are looping, but for whatever reason, my blocks aren't drawing. I can press back and forth but around the 9th loop, even my test screen stops showing things. I can see the Block's `draw()` method is running by putting a `print()` in there.
+
+Okay, I've got it. When I make my Block objects, I call the `createVirtual()` method which uses `malloc()` to set aside a chunk of memory for the sprite. Even though the variable is destroyed and recreated in each cycle of the loop, that chunk of memory remains allocated. As I continue to loop, I chew up all of my available memory until I can't make any more sprites. The solution is the `freeVirtual()` method which unbinds that memory so it can be used again.
+
+[Here's the working code](./gtg-navigation-test-02.ino), and here are the relevant bits.
+
+A method in my Block struct to clear the memory
+
+```C++
+void clearVirt() {
+  sprite.freeVirtual();
+}
+```
+
+and calls to the new method at the end of the loop, before going to a new screen
+
+```C++
+title.clearVirt();
+mode.clearVirt();
+modeLeft.clearVirt();
+modeRight.clearVirt();
+```
+
+I'm glad this is working, but I think I might have to abandon my sprite-based Block struct if memory becomes sticky down the line. But that's a decision for another time. I have proven the validity of my design plan, I'm going to tackle I/O next which means I have to find an SD card ...
