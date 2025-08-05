@@ -84,3 +84,5 @@ I don't know exactly what's happening but I suspect that `getTextBounds()` doesn
 <img src="./img/gtg-home-screen-red-box-modes-01.jpg" alt="home screen prototype with a red box showing the computed text area">
 
 Nope, the problem is my understanding. `getTextBounds()` absolutely accounts for the descenders. See how the red box representing my computed text area is as big as the text, but is aligned to the baseline, not the lowest part of the "g"? I've been using the bounding box to determine my initial cursor position which is why my strings that have glyphs with descenders look a little low. I can calculate the difference between the baseline and the deepest descender to fix it though. Then I can use that offset to put all of my strings on the same baseline, regardless of descenders, and properly place the bounding box. Ugh. My brain hurts after staring at the problem and figuring out the solution >< I recommend taking a break after squashing a bug like this.
+
+I think this Block object will grow better than my previous Button object, so instead of wallowing in the weeds of UI design (I'll be back), I'm going to build out some of the other screens/interfaces.

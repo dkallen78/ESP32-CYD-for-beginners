@@ -120,4 +120,4 @@ The issue is how I have the `text()` method implemented in my Button struct, so 
 
 <img src="./img/gtg-home-screen-mock-up-09.jpg" alt="home screen mock-up with alternate wording">
 
-Honestly, that works for me. What isn't working for me is my Button struct. That is to say, it's doing all the things I want it to, but I don't think it's going to work for all the things I will want it to do. Instead of building up a bunch of tech debt, I'm going to take another look at what I have and maybe put it in an .h file so I can use it in other projects.
+Honestly, that works for me. What isn't working for me is my Button struct. That is to say, it's doing all the things I want it to, but I don't think it's going to work for all the things I will want it to do. Instead of building up a bunch of tech debt, I'm going to [take another look](../03-better-objects/) at what I have and maybe put it in an .h file so I can use it in other projects.
