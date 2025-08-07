@@ -1,0 +1,3 @@
+# File Input/Output
+
+This is going to be one of the tricky bits for me because I don't know a lot about I/O in general, and I know very little about I/O with C++. What I do know is that I want to output my files to JSON since I want them to be easily read by the JavaScript program I'll eventually make for the web interface. So I'm just going to search for "JSON C++" on Google and see what pops up. I'll be back.
