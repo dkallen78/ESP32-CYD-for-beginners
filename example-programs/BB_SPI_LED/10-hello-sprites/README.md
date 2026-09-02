@@ -1,6 +1,6 @@
 # Hello Sprites
 
-Okay, we're not going to make a video game (although you probably could if you wanted to), instead, we're going to use sprites to improve some of our previous programs. For our purposes, a sprite is a predrawn image that can be placed anywhere on the screen as needed. 
+Okay, we're not going to make a video game (although you probably could if you wanted to); instead, we're going to use sprites to improve some of our previous programs. For our purposes, a sprite is a predrawn image that can be placed anywhere on the screen as needed. 
 
 When we've made our programs up until now, we've created a single instance of the BB_SPI_LCD class. When we run the `begin()` method of that class, we're essentially hooking up that instance to the display so we can use it to draw letters and rectangles. But we can make multiple instances of this class to draw on invisible, virtual displays. Then, when we're ready to actually display what we've drawn on our virtual displays, we can run the `drawSprite()` method from our primary instance to display it. I know that sounds confusing, so let's look at [an example](hello-sprites.ino) so you can see what's happening.
 
