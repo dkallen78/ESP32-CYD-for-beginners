@@ -59,7 +59,7 @@ The next new bit of code is
 lcd.setFreeFont(&Calligraffitti_Regular_16);
 ```
 
-`setFreeFont()` is essentially the same as `setFont()` from our perspective, the biggest difference is we have to pass in the font variable as a reference, so don't forget the ampersand if you're doing this with a different font.
+`setFreeFont()` is essentially the same as `setFont()` from our perspective. The biggest difference is we have to pass in the font variable as a reference, so don't forget the ampersand if you're doing this with a different font.
 
 ```C++
 lcd.setTextColor(TFT_BLUE);
@@ -101,7 +101,7 @@ uint16_t w, h;
 lcd.getTextBounds("Hello World", 0, 0, &x1, &y1, &w, &h);
 ```
 
-After the function runs, the <var>`x1`</var> and <var>`y`</var> values will be the top-left corner of the text were it to render. In the case of the typeface we used, those coordinates would be 0, -16. The <var>`w`</var> and <var>`h`</var> will also have changed to whatever the width and height of the string would be were it to be rendered. This method works whether we use BB_SPI_LCD's included fonts or a GFX typeface.
+After the function runs, the <var>`x1`</var> and <var>`y1`</var> values will be the top-left corner of the text were it to render. In the case of the typeface we used, those coordinates would be 0, -16. The <var>`w`</var> and <var>`h`</var> will also have changed to whatever the width and height of the string would be were it to be rendered. This method works whether we use BB_SPI_LCD's included fonts or a GFX typeface.
 
 ## Making a new text-centering function
 
@@ -195,4 +195,4 @@ And just to show you that the typeface is transparent
 
 <img src="../assets/img/09/cyd-hello-fonts-centered-colors.jpg" alt="CYD Hello Fonts program showing typeface background transparency">
 
-This function to get the center offset for printed text is pretty cool, but there's one glaring problem with it: It will only give the correct values for GFX fonts, not the BB_SPI_LCD fonts. See if you can figure out what needs to be done to make this function work for both typefaces. [Take a look at the code](https://github.com/bitbank2/bb_spi_lcd/blob/b243e7421397ba31c6355bad0fd90131ab29508a/src/bb_spi_lcd.cpp#L8473) for the `getTextBounds()` method in the BB_SPI_LCD library to get a hint. Here's how I did it.
+This function to get the center offset for printed text is pretty cool, but there's one glaring problem with it: It will only give the correct values for GFX fonts, not the BB_SPI_LCD fonts. See if you can figure out what needs to be done to make this function work for both typefaces. [Take a look at the code](https://github.com/bitbank2/bb_spi_lcd/blob/b243e7421397ba31c6355bad0fd90131ab29508a/src/bb_spi_lcd.cpp#L8473) for the `getTextBounds()` method in the BB_SPI_LCD library to get a hint. [Here's how I did it](../09-hello-fonts/hello-fonts-better-function.ino).

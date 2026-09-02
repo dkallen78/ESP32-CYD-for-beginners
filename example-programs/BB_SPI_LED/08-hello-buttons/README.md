@@ -1,6 +1,6 @@
 # Hello Buttons
 
-Buttons are an integral part of just about every user interface, so if you want to build something interactive with your CYD, you're going to have to figure them out. Before I picked up the CYD, I liked to play with JavaScript (still do, actually), and whenever I would make a web app one of the first things I would do after figuring out what to make was decide what it's going to look like. I like to use paper.
+Buttons are an integral part of just about every user interface, so if you want to build something interactive with your CYD, you're going to have to figure them out. Before I picked up the CYD, I liked to play with JavaScript (still do, actually), and whenever I would make a web app, one of the first things I would do after figuring out what to make was decide what it's going to look like. I like to use paper.
 
 <img src="../assets/img/08/hello-buttons-concept.jpg" alt="concept drawing for a CYD program UI">
 
