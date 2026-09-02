@@ -36,7 +36,7 @@ The `void` at the beginning indicates what type of value the function will retur
 
 Function names should be named with the same descriptive rigor and brevity as variable names. You *can* call it `doTheThing()` but that isn't very helpful to future you. 
 
-The `int parameter` part inside the parentheses is a value that you're sharing with the function, a value it probably needs to work right. This is analagous to declaring a variable so you need to give it a type.
+The `int parameter` part inside the parentheses is a value that you're sharing with the function, a value it probably needs to work right. Giving your function a parameter isn't strictly required, but they come in handy frequently. Including a parameter is analagous to declaring a variable so you need to give it a type.
 
 When I try to refactor repetitive code into a function, I like to start with just the rough outline of a function and add what I need as I go. Another function design principle is to keep the scope of the function as limited as possible. In this case, even though I have four identical lines in each for loop, I'm going to omit `delay()` from my function because it's doing something different than the three lines before it.
 
@@ -110,7 +110,7 @@ Remember, we call this function twice, once in each for loop.
 
 Okay, now that we have our `String` object, how will it help us figure out how long our string is? With the `length()` method. `text.length()` returns the number of characters in our string as an integer value. In our current case, "Hello World" has 11 characters, so that's what `text.length()` will return. Hold on to that knowledge and lets move on to our next problem to solve, the width of the characters in our font.
 
-The BB_SPI_LCD library has a method to return the height of the current active font `fontHeight()`, but not the width of its characters. There are some clever ways we could make our own function to do so, but let's keep it simple and just declare a variable to keep track of it. Put it in `drawTextBox()` for now (we may move it later).
+The BB_SPI_LCD library has a method to return the height of the current active font `fontHeight()`, but not the width of its characters. There are some clever ways we could make our own function to figure out the character width, but let's keep it simple and just declare a variable to keep track of it. Put it in `drawTextBox()` for now (we may move it later).
 
 ```c++
 int charWidth = 12;

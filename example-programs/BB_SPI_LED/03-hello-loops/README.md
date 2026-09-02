@@ -67,7 +67,7 @@ Neat! `loop()` runs over and over, and every time it does, new x and y values ar
 
 Okay, this *is* neat, but the random blinking is a little hectic. Let's slow it down and make a transition effect for our text/box. What if, instead of blinking off, it disapeared row by row? It sounds fun. Let's do it. 
 
-First, let's figure out what we want to do. Instead of using `fillScreen()` to wipe away our text and box, we want to cover it up one column at a time. Let's use `fillRect()` to cover it up with 1-pixel-wide rectangles. We could do this by filling our code with 140 `fillRect()` commands, or we could put a loop inside of our `loop()`. Specifically, a special type of loop that counts through a sequence of numbers called a for loop. It looks like this:
+First, let's figure out what we want to do. Instead of using `fillScreen()` to wipe away our text and box, we want to cover it up one column at a time. Let's use `fillRect()` to cover it up with 1-pixel-wide rectangles. We could do this by filling our code with 140 `fillRect()` commands, or we could put a loop inside of our `loop()`. Specifically, a special type of loop that counts through a sequence of numbers called a "for loop." It looks like this:
 
 ```c++
 for (initialization; condition; increment) {
@@ -151,4 +151,4 @@ Honestly, this is still a little to busy for me. Let's stick another `delay()` *
 
 Much better.
 
-For loops are really powerful programming tool, and if you have a rudimentary grasp on how they work, you can do some fun things. [Let's dive in](../04-hello-for-loops/).
+For loops are a really powerful programming tool, and if you have a rudimentary grasp on how they work, you can do some fun things. [Let's dive in](../04-hello-for-loops/).

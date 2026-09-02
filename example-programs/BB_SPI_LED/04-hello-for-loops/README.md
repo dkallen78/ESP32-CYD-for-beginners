@@ -148,7 +148,7 @@ Once you've got all of this straightened out, drop those for loops into your `lo
 
 <img src="../assets/img/04/cyd-hello-world-ugly-moving-text.gif" alt="CYD Hello World with flickering moving text">
 
-It doesn't look good. It's slow and it flickers. What's happening here? The problem is we're using the "nuclear option" to clear the screen every frame — `fillScreen()`. A better solution would be if we could just erase the parts that aren't blue so we can draw our updated text box on a clean palette. Thankfully, we have the `fillRect()` method that does exactly what we need, and all we have to do is draw the same rectangle we just did, only swap out yellow for blue.
+It doesn't look good. It's slow and it flickers. What's happening here? The problem is we're using the "nuclear option" to clear the screen every frame — `fillScreen()`. That means we're redrawing all 76,800 pixels on the display. A better solution would be if we could just erase the parts that aren't blue so we can draw our updated text box on a clean palette. Thankfully, we have the `fillRect()` method that does exactly what we need, and all we have to do is draw the same rectangle we just did, only swap out yellow for blue.
 
 ```c++
 lcd.fillRect(90, i, 140, 24, TFT_BLUE);
@@ -156,7 +156,7 @@ lcd.fillRect(90, i, 140, 24, TFT_BLUE);
 
 <img src="../assets/img/04/cyd-hello-world-better-moving-text.gif" alt="CYD Hello World with moving text with less flicker">
 
-Ooh, that looks much better, but there's one more optimization we can make that will make it look better still. Originally, we were drawing over all of the screen. With this program we're drawing over just the rectangle. But really, we can get away with erasing a line that's 1 pixel by 140 pixels each frame. When the text box is descending, we need to erase the line at the top of the box. When it's moving back up, we need to erase the line at the bottom. The y coordinate for the top of the box is <var>`i`</var>, and the y coordinate for the bottom is <var>`i`</var> + 24 (the pixel height of our box). Modify the two `fillRect()` methods to draw a 1 by 140 pixel box at those coordinates.
+Ooh, that looks much better, but there's one more optimization we can make that will make it look better still. Originally, we were drawing over all of the screen. With this program we're drawing over just the rectangle (3,360 pixels vs 76,800 pixels). But really, we can get away with erasing a line that's 1 pixel by 140 pixels each frame. When the text box is descending, we need to erase the line at the top of the box. When it's moving back up, we need to erase the line at the bottom. The y coordinate for the top of the box is <var>`i`</var>, and the y coordinate for the bottom is <var>`i`</var> + 24 (the pixel height of our box). Modify the two `fillRect()` methods to draw a 1 by 140 pixel box at those coordinates.
 
 [If you did it right](hello-world-up-down.ino), your text box should have just a slight flicker and the whole thing should move much smoother.
 
