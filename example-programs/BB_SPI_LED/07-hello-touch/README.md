@@ -2,7 +2,7 @@
 
 Until now we've been producing output to display on our CYD screens. We've done some computing and toyed with some data structures, but we haven't done any input with our touch screens. Let's fix that.
 
-Open up this file, copy/paste it into the IDE, and compile/upload it to your CYD.
+Open up [this file](../07-hello-touch/hello-touch.ino), copy/paste it into the IDE, and compile/upload it to your CYD.
 
 <img src="../assets/img/07/cyd-hello-touch.gif" alt="CYD Hello Touch program">
 
@@ -252,4 +252,4 @@ else if (!lcd.rtReadTouch(&ti) && onScreen) {
 
 <img src="../assets/img/07/cyd-hello-touch-state.gif" alt="CYD Hello Touch with state management">
 
-That looks pretty good! Let's take this touch thing [one step further](../07-hello-touch/) by making use of the x and y values of our touch and making some buttons!
+That looks pretty good! Let's take this touch thing [one step further](../08-hello-buttons/) by making use of the x and y values of our touch and making some buttons!
