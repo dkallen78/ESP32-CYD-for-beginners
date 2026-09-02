@@ -35,7 +35,9 @@ Once the Boards Manager is open (it will be a column on the left side of the win
 
 #### Library Manager
 
-At this point you are just about ready to dive into the examples, but first you need learn how to install libraries. Libraries are packages of commands that give you extra functionality. When you installed the ESP32 board just a minute ago, that had a number of so-called standard libraries that will let you do things like access Wi-Fi and Bluetooth which are common on ESP32 chips. But since our goal is to make use of the CYD display, we're going to need a library to make using the display easier. To access the Library Manager in Arduino either select the icon on the left of the window, click Tools > Manage Libraries in the menu or press <kbd><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd></kbd>.
+At this point you are just about ready to dive into the examples, but first you need learn how to install libraries. Libraries are packages of commands that give you extra functionality. When you installed the ESP32 board just a minute ago, it included a number of so-called standard libraries that let you do things like access Wi-Fi and Bluetooth which are common on ESP32 chips. But since our goal is to make use of the CYD display, we're going to need a library to make using the display easier. 
+
+To access the Library Manager in Arduino either select the icon on the left of the window, click Tools > Manage Libraries in the menu or press <kbd><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd></kbd>.
 
 <img src="assets/arduino-library-manager.jpg" alt="Arduino Library Manager menu tree">
 

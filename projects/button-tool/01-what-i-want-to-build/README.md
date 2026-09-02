@@ -95,4 +95,6 @@ Okay, so I've been tinkering with this for a few hours and I'm not 100% satisfie
 
 <img src="./img/button-tool-with-red-box.jpg" alt="CYD button tool program with red box showing max touch area">
 
-I think I'm done. You can take a [look at what I've got here](./button-tool-01.ino). A significant chunk of this is going to be reused for calibration in the rep-counter project.
+I think I'm done. You can take a [look at what I've got here](./button-tool-01.ino). A significant chunk of this is going to be reused for calibration in the rep-counter project. When making a project, like the rep-counter, don't be afraid to make something else to help you make your original program, it's good practice and you might find something you weren't looking for.
+
+If I were to come back to this later, I would measure how accurate my calibrated touch input is and I would move the targets to the corners as well to see if the offsets are different on different parts of the screen.
