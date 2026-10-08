@@ -1,7 +1,8 @@
-# ESP32 CYD for beginners
-A record of my journey with the CYD that I'm making to help others who don't know a lot about hardware
+# Introduction to programming with the ESP32 CYD
 
 Given the community that's growing up around the ESP32 CYD, I thought it was good idea to make a guide for absolute beginners who have very limited programming knowledge but still want to dive in and make something. Many tutorials and guides take the form of code examples that you're expected to copy and paste which works great for people with experience programming in C++, but not so much for every one else. 
+
+If you've ever wanted to get into programming or making things, the CYD is a great start, and this introduction should get you on your way to making things of your own.
 
 ## What is the ESP32 Cheap Yellow Display (CYD)?
 
